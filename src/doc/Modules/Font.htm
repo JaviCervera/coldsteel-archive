@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Font</span></big><br><br>
+Fonts are used to display texts on screen. Each font defines a different look and size for your text, and are composed of images with a list of characers that you can use in your texts. ColdSteel comes with a tool that allows you to convert any TrueType font to a ColdSteel image font.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int FontLoad(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads an image font, so you can use it to print text to screen.<br>
+<br><big>Returns</big><br>A handle to the font loaded.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">file</span> - File to the image containing the font charset. The file must be an image in one of the following formats: BMP, PNG, JPG, PCX, PSD.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FontFree(int font)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a previously loaded font.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">font</span> - Handle of the font, as returned by FontLoad().<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

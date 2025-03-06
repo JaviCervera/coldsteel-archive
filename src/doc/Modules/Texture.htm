@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Texture</span></big><br><br>
+A texture is an image which can be used in combination with other elements to define how the elements of a 3D scene look. You can load a texture with a wood, grass, or metal image from disk, and apply it to a scene node to give the appropiate look.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int TextureCreate(int width, int height)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a blank texture with the specified width and height. You can write pixels onto this texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextureTargetCreate(int width, int height)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a blank texture with the specified width and height, that can be used as a render target for a camera.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextureLoad(string file, int mipmaps)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a texture from disk.<br>
+<br><big>Returns</big><br>A handle to the texture loaded.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">file</span> - File of the texture. The file must be an image in one of the following formats: BMP, PNG, JPG, PCX, PSD.<br>
+<span style="font-weight: bold;">mipmaps</span> - Generate mipmaps for the texture. Disabling mipmaps looks better for textures you will use in a skybox, or for masked textures (when you apply them to a material using the MT_MASKED mode).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void TextureFree(int tex)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a previously loaded texture.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture, as returned by TextureLoad().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string TextureFile(int tex)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the filename of the specified texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextureWidth(int tex, int original)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of a texture.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+<span style="font-weight: bold;">original</span> - Textures which are not power of two in size (2, 4, 8, 16, 32, 64, 128, 256...) are scaled when loaded. If you set this parameter to 1, it will give you the original width of the texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextureHeight(int tex, int original)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of a texture.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+<span style="font-weight: bold;">original</span> - Textures which are not power of two in size (2, 4, 8, 16, 32, 64, 128, 256...) are scaled when loaded. If you set this parameter to 1, it will give you the original height of the texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextureLock(int tex)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Locks a texture for direct reading and writing onto it.<br>
+<br><big>Returns</big><br>A pointer to the texture pixels buffer. You can directly write bytes into this buffer to modify the texture.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void TextureUnlock(int tex)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Unlocks a previously locked texture, after you have finished reading or writing data from it. You must unlock it before rendering this texture again.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void TextureColorKey(int tex, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Defines the transparent color of a texture.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+<span style="font-weight: bold;">color</span> - Color of the texture that will be considered transparent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void TextureNormalize(int tex, float amplitude)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Converts a texture into a normal map, which you can use with normal and parallax mapping.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+<span style="font-weight: bold;">amplitude</span> - Value by which the height information is multiplied.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextureHWPointer(int tex)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the internal hardware pointer to the texture.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

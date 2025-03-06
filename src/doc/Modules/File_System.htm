@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">File System</span></big><br><br>
+ColdSteel provides a set of functions to work with files, although the programming languages compatible with it already have their own functions for this task. The advantage of using the engine built-in functions is that you can read files from within the compressed packages you can use with ColdSteel.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int FileRead(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Opens a file for reading, and returns its handle, or '0' if the file could not be opened.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int FileWrite(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Opens a file for writing, and returns its handle, or '0' if the file could not be created.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileClose(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Closes a file previously opened with FileRead() or FileWrite().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int FileSize(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the size in bytes of the specified file handle.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int FilePos(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the current offset position inside the file, in bytes.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileSeek(int file, int pos, int relative)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Moves the file pointer to a new position. It can be relative to the current position if set to '1', or to the beginning of the file otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int FileReadByte(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads a byte from the specified file, and returns its value casted to int.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int FileReadShort(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads a short int (2 bytes) from the specified file, and returns its value casted to int.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int FileReadInt(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads an integer from the specified file, and returns its value.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float FileReadFloat(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads a float from the specified file, and returns its value.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string FileReadString(int file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads a null-terminated string from the specified file, and returns its value.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileReadBytes(int file, int buf, int size)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads the specified number of bytes from a byte, and puts them in the memory pointed by buffer.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileWriteByte(int file, int value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Cast the specified integer value to a byte, and writes it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileWriteShort(int file, int value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Cast the specified integer value to a short integer, and writes it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileWriteInt(int file, int value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Writes the specified value to the file.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileWriteFloat(int file, float value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Writes the specified float value to the file.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileWriteString(int file, string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Writes the specified null-terminated string to the file.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void FileWriteBytes(int file, int buf, int size)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads size bytes from buffer, and writes them to the file.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string FileGetExt(string filename)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Extracts the extension of the specified filename.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string FileGetDir(string filename)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Extracts the directory part of the specified filename.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string FileStripExt(string filename)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified filename, without the extension.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string FileStripDir(string filename)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified filename, without the directory part.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Light</span></big><br><br>
+Lights are used to illuminate the scene. Current hardware only allows 8 lights in the scene at the same time.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">LT_POINT</span> - Point light. It has a position in space and emits light in all directions.<br>
+<span style="font-weight: bold;">LT_DIRECTIONAL</span> - Directional light. Similar to the sunlight. Comes from a direction in an infinite space.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int LightNode(int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new point light scene node.<br>
+<br><big>Returns</big><br>The handle of the light node created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of the light. When the parent moves or rotates, the light will move and rotate with it to always maintain the same relative position with it. If you don't want the light to have a parent, set this to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void LightType(int light, int type)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the type of the light, which can be point (default) or directional.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void LightRadius(int light, float radius)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the radius of a light.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void LightAmbient(int light, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the ambient color of the light.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void LightDiffuse(int light, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the diffuse color of the light.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void LightSpecular(int light, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the specular color of the light.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

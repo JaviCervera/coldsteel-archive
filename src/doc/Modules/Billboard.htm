@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Billboard</span></big><br><br>
+Billboards are 2D objects inside a 3D scene. They are represented by a plain mesh which always face the camera, and you can use the standard material functions to it (like with any type of node) to give it the appearance you want it to have.<br>Billboards are commonly used to render grass, plants, and other elements which will make your scenes look awesome.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int BillboardNode(int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new billboard node.<br>
+<br><big>Returns</big><br>The handle of the billboard node created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of the billboard node. When the parent moves or rotates, the billboard will move and rotate with it to always maintain the same relative position with it. If you don't want the billboard to have a parent, set this to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void BillboardResize(int billboard, float width, float height)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the size of a billboard.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float BillboardWidth(int billboard)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of a billboard.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float BillboardHeight(int billboard)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of a billboard.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

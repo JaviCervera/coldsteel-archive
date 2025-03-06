@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">XML Parser</span></big><br><br>
+A set of functions for parsing and writing XML files is also included, really appropiate for configuration files or simple scripts.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">XML_NONE</span> - XML node type. No XML node, usually returned when you don't have read a node yet.<br>
+<span style="font-weight: bold;">XML_ELEMENT</span> - XML node type. An element, like '<foo>'.<br>
+<span style="font-weight: bold;">XML_ELEMENTEND</span> - XML node type. The end of an element, like '</foo>'.<br>
+<span style="font-weight: bold;">XML_TEXT</span> - XML node type. Text within an element, for example '<foo>This is the text</foo>'.<br>
+<span style="font-weight: bold;">XML_COMMENT</span> - XML node type. A comment in the form '<!-- This is the comment -->', or a DTD definition.<br>
+<span style="font-weight: bold;">XML_UNKNOWN</span> - XML node type. An unrecognized type of node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int XMLRead(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Opens an XML file for reading and returns its handle, or '0' if the file could not be opened.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int XMLWrite(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Opens an XML file for writing and returns its handle, or '0' if the file could not be created.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void XMLClose(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Closes an xml file previously opened with XMLRead() or XMLWrite().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int XMLReadNode(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Reads the next node in the xml. If there are no more nodes, returns '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int XMLNodeType(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the type of the current node in the xml file. Check the constants section for valid values.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string XMLNodeName(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the name of the current node, only valid if its type is XML_ELEMENT.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string XMLNodeData(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the string data of the current node, only valid if its type is XML_TEXT, or a XML_UNKNOWN node with some data on it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int XMLAttributeCount(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of attributes in the current XML_ELEMENT node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string XMLAttributeName(int xml, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the name of the specified node attribute.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string XMLAttributeValue(int xml, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the value of the specified node attribute.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void XMLWriteHeader(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Writes the required header in an XML file. Always write this at the top of an XML file.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void XMLWriteElement(int xml, string name, string attributes, int empty)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Writes a new element in the XML file. It does support a maximum of 5 attributes, which must be a list of name/value pairs separated by the symbol "|". Name and value must also be separated by "|". If empty is '1', the element will be closed. If not, you can add other nodes to it, and you must close it with XMLWriteClosingTag().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void XMLWriteClosingTag(int xml, string name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Closes an element which you created previously with XMLWriteElement(), and left open.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void XMLWriteText(int xml, string text)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Writes a text inside the current element.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void XMLWriteLineBreak(int xml)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Puts a line break inside the XML file, useful to make the file more readable and clean.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

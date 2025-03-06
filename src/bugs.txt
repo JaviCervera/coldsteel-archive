@@ -1,0 +1,18 @@
+* csDisplayFeature(#CSDFE_STENCILBUFFER) crashes the program (at least in PureBasic). Reported by Sebe.
++ You cannot load a mesh twice. Reported by Jedive.
+* You cannot free a texture which is being used (maybe not a bug)? Reported by Jedive.
++ If you do not move or rotate a camera on one frame, that frame the camera will point to 0,0,0. Reported by Jedive.
+- MilkShape models are loaded without textures. Reported by Seryu.
+- Using csTextureNormalize on one texture made another texture change it's normalize value because they were sharing the same file name, but they were different handles. Reported by Lenn.
+- Global node positions do not seem to be returned correctly. Reported by Jedive.
++ You can save stuff in the demo version with the exit dialog. Reported by Tim Turner.
+* Editors don't work at higher resolutions than 1024x768. Reported by Tim Turner.
++ Removing a gravity affector makes ParticleEd crash. Reported by Tim Turner.
+- RTT does not work under OpenGL.
+- Setting a tangent node flag to enable fog prevents the node from being rendered. Reported by Num3.
+- Particle emitter seem to move when they shouldn't (check the demo).
+- Stencil shadow problems (some models crash when using stencils, etc -> I think it happens with the models with tangents generated).
+
+(-) Bugs to check.
+(+) Bugs fixed.
+(*) Bugs rejected.

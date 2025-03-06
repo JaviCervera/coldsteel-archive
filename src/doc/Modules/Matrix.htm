@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Matrix</span></big><br><br>
+ColdSteel contains functions to manage 4x4 matrices. A matrix defines a transformation in 3D space. It is oriented to users with advanced knowledge of 3D programming.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int MatrixCreate()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new 4x4 matrix and returns its handle.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixFree(int matrix)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a previously created matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixAdd(int matrix, int matrix2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds matrix2 to matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixCopy(int matrix, int matrix2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Copies matrix2 inside matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixDiv(int matrix, int matrix2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Divides matrix by matrix2.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float MatrixElement(int matrix, int row, int column)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the value of the matrix element located at the specified position (row and column must be between 0 and 15).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MatrixEqual(int matrix, int matrix2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if both matrices equal, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixGetRotation(int matrix, int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Converts the rotation defined by the matrix into an euler rotation, and put it into the specified vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixGetTranslation(int matrix, int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Puts the translation defined by the matrix into vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixIdentity(int matrix)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the identity matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixInterpolate(int matrix, int matrix2, float time)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Interpolates matrix with matrix2, storing the result in matrix. time must be a value between 0.0 and 1.0.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MatrixInvert(int matrix)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Inverts matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixMul(int matrix, int matrix2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Multiplies matrix by matrix2.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixSet(int matrix, int row, int column, float val)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the value at the specified matrix position (row and column must be between 0 and 15).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixSetRotation(int matrix, int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the matrix rotation based on the euler angles defined in vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixSetScale(int matrix, int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Scales a matrix based on the values defined in vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixSetTranslation(int matrix, int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Translates a matrix based on the values defined in vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixSub(int matrix, int matrix2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Substracts matrix2 from matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MatrixTranspose(int matrix)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Transposes matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

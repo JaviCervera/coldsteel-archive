@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Joystick</span></big><br><br>
+Although most PC games are controlled through the keyboard and mouse, being able to use a joystick is a really good option, as many games are better controlled this way. ColdSteel comes with a set of functions to manage analog joysticks (the same functions can be used to handle classic digital pads). Up to two joysticks are supported, numbered 0 and 1.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">string JoyName(int id)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the name of the specified joystick. If the joystick is not available, an empty string will be returned.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int JoyButton(int id, int button)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified joystick button is pressed, or '0' otherwise. Joystick button indices start at '1'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float JoyAxis(int id, int axis)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the position of the specified axis (a value from -1.0 to 1.0). Joystick button indices range form '1' to JoyNumAxes().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int JoyNumAxes(int id)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of axes available for the specified joystick.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

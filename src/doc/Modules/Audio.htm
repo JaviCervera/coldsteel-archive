@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Audio</span></big><br><br>
+This module controls the 2D and 3D audio library contained in ColdSteel.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void ListenerUpdate(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Updates the listener using a node position and rotation.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SoundSetMasterVolume(float volume)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the master sound volume, in a range between 0.0 and 1.0.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float SoundGetMasterVolume(float volume)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the master sound volume, in a range between 0.0 and 1.0.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int SoundLoad(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a sound and returns its handle. A sound can be in WAV or OGG format.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SoundFree(int sound)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a previously loaded sound.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int SoundPlay2D(int sound, int loop)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Plays a sound and returns a handle to the channel used to play it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int SoundPlay3D(int sound, float x, float y, float z, int loop)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Plays a sound in 3D space, and returns a handle to the channel used to play it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int SoundIsPlaying(int sound)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' of the specified sound is playing, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ChannelPaused(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified channel has been paused, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ChannelFinished(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified channel has finished playing the sound, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ChannelLooped(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified channel is in loop mode, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelGetMinDistance(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the distance after which the sound played by this channel won't get any louder.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelGetMaxDistance(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the distance after which the sound played by this channel won't get any quieter.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelGetPan(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the pan of the sound. Takes a value between '-1' and '1', '0' is center.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ChannelGetPlayPosition(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the current play position of the sound in milliseconds.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelX(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the X position of the sound emitted by this channel in 3D space, if it is a 3D sound.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelY(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Y position of the sound emitted by this channel in 3D space, if it is a 3D sound.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelZ(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Z position of the sound emitted by this channel in 3D space, if it is a 3D sound.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ChannelGetVolume(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the volume of the channel, between '0' and '1'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelPause(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Pauses a channel.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelResume(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Resumes a channel which were previously paused.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelSetDistance(int channel, float min, float max)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the min and max distance for a 3D sound channel. Further max distance, the sound won't be audible. Nearer min distance, it's heard at full volume.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelSetPan(int channel, float pan)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the pan of the sound. Takes a value between '-1' and '1', '0' is center.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelSetPosition(int channel, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the position in 3D space of the sound emitted by this channel, if it is a 3D sound.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelSetVolume(int channel, float volume)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the volume of the channel, between '0' and '1'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ChannelStop(int channel)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Stop a channel and free its resources from memory.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Dir Listing</span></big><br><br>
+A set of functions to search for files within directories is provided.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void PackageAdd(string pak)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds a package to the resource search path. When you load a file or any media resource, the engine will look into the path specified, and if the file is not found, it will look into the packages added. This is a nice way to reduce disk usage. A package is a standard zip file.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DirList(string dir)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Opens a directory for listing its files, and returns a handle to it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DirClose(int dir)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Closes a directory after we have finished listing its files.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DirFileCount(int dir)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of files and directories found in the specified dir.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string DirFileName(int dir, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the name of the file at the specified index in the specified dir<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DirFileIsDir(int dir, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified file is a directory, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

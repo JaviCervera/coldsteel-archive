@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Collision</span></big><br><br>
+You can detect collisions between objects in ColdSteel, and also trace lines for one location to another and detect the position at which that line collided with a ColdSteel scene node, or the first node that the line found.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void CollisionSlide(int node, float pos_x, float pos_y, float pos_z, float dest_x, float dest_y, float dest_z, float rad_x, float rad_y, float rad_z, int vec_pos, int vec_tri_a, int vec_tri_b, int vec_tri_c)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>This functions returns sliding information when you want to point form one point to another in 3D space. This can be used when you want to move any type of node in the space, to detect if it collides with the specified node, and get the sliding information.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">node</span> - This is the node with which you want to check collisions. This is, for example, the map node.<br>
+<span style="font-weight: bold;">pos_x, pos_y, pos_z</span> - This is the source position from where you are moving. This is, the space coordinates previous to the movement.<br>
+<span style="font-weight: bold;">dest_x, dest_y, dest_z</span> - This is the destination position where you want to go. This is, the space coordinates after moving.<br>
+<span style="font-weight: bold;">rad_x, rad_y, rad_z</span> - This is the radius of the node you are moving.<br>
+<span style="font-weight: bold;">vector_pos</span> - This is the vector where you want to store the result position. If you are moving a node, you should reposition it using these values.<br>
+<span style="font-weight: bold;">vector_tri_a, vector_tri_b, vector_tri_c</span> - The coordinates of the triangle with which the collision occured will be placed in these vectors. If you don't need this info, you can safely set these to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int CollisionLinePick(int node, float pos_x, float pos_y, float pos_z, float dest_x, float dest_y, float dest_z, int vec_pos, int vec_tri_a, int vec_tri_b, int vec_tri_c)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Finds the collision point between pos_x, pos_y, pos_z, and dest_x, dest_y, dest_z. If a collision has occured, '1' will be returned, and the vectors will be filled with the collision information. If no colision is found, then '0' will be returned.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">node</span> - This is the node with which you want to check collisions. This is, for example, the map node.<br>
+<span style="font-weight: bold;">pos_x, pos_y, pos_z</span> - These are the origin coordinates.<br>
+<span style="font-weight: bold;">dest_x, dest_y, dest_z</span> - These are the destination cordinates.<br>
+<span style="font-weight: bold;">vector_pos</span> - This is the vector where the point at which collision occured will be stored.<br>
+<span style="font-weight: bold;">vector_tri_a, vector_tri_b, vector_tri_c</span> - The coordinates of the triangle with which the collision occured will be placed in these vectors. If you don't need this info, you can safely set these to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int CollisionLineNode(float pos_x, float pos_y, float pos_z, float dest_x, float dest_y, float dest_z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the first node found in the line defined by pos_x, pos_y, pos_z, and dest_x, dest_y, dest_z, or '0' if a node were not found.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">pos_x, pos_y, pos_z</span> - These are the origin coordinates.<br>
+<span style="font-weight: bold;">dest_x, dest_y, dest_z</span> - These are the destination cordinates.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Effect</span></big><br><br>
+Apart from simple shaders, ColdSteel supports effects. An effect is a complex shader, which can be composed of several techniques and passes, and is stored in a standard DirectX .FX file.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int EffectRegister(string effect, int base_mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new effect.<br>
+<br><big>Returns</big><br>The handle of the registered effect. This handle can then be used as a standard material type.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">effect</span> - A string containing the source code of the effect.<br>
+<span style="font-weight: bold;">base_mat</span> - The base material type of this effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int EffectRegisterFile(string effect_file, int base_mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a new effect from a file.<br>
+<br><big>Returns</big><br>The handle of the registered effect. This handle can then be used as a standard material type.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">effect_file</span> - The file containing the effect. This is a standard DirectX .FX file.<br>
+<span style="font-weight: bold;">base_mat</span> - The base material type of this shader.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetTechnique(int effect, string technique)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the current technique for the effect. An effect can be composed by many techniques (for example: one with shaders 2.0, another with shaders 1.0, etc), and you can choose which one to use inorder to render the effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetTexture(int effect, string var_name, int texture)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set an effect texture. A texture is a variable of type 'texture' defined in the effect. You can pass a texture created or loaded within ColdSteel to the effect using this function.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetBool(int effect, string var_name, int value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the value of a boolean variable in the effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetInt(int effect, string var_name, int value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the value of an integer variable in the effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetFloat(int effect, string var_name, float value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the value of a floating point variable in the effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetVector(int effect, string var_name, int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the value of a vector variable in the effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EffectSetMatrix(int effect, string var_name, int matrix)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the value of a matrix in the effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

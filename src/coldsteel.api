@@ -1,0 +1,2017 @@
+-- Api information
+info("lib", "coldsteel.dll")
+info("COLDSTEEL_VERSION", "0.9.7")
+
+-- Welcome page
+docimport("Welcome.htm")
+
+--[[
+-- AngelScript documentation
+docchapter("AngelScript")
+    docimport("Introduction.htm")
+    docimport("Global Declarations.htm")
+    docimport("Statements.htm")
+    docimport("Expressions.htm")
+    docimport("Data Types.htm")
+    docimport("Object Handles.htm")
+    docimport("Reserved Keywords and Tokens.htm")
+    docimport("Operator Precedence.htm")
+docendchapter()
+--]]
+
+-- Begin modules chapter
+docchapter("Modules")
+docdesc("Here is a brief description of the different modules of functions available in ColdSteel. A module is a section of functions, and the distinction has only be made for better organization of this document.")
+
+-- Core
+docpage("Core")
+docdesc("ColdSteel SDK contains some functions to initialize and deinitialize the engine properly. Before calling any other function in the engine, you must call LibInit(). For a clean shutdown, call LibFinish() before exiting.")
+
+func("void CoreInit()")
+docdesc("Initialises the engine. You must call this function at the begining of your program, before calling any other ColdSteel functions.")
+
+func("void CoreFinish()")
+docdesc("Cleanly shuts down the engine, releasing all the memory allocated by it. After calling this, you can exit your program safely.")
+
+func("void CoreMessage(string msg, int error)")
+docdesc("Shows as popup message. The 'error' parameter tells if the message should contain an error icon.")
+
+func("int CoreTimer()")
+docdesc("Returns the amount of milliseconds elapsed since the system started.")
+
+-- Audio
+docpage("Audio")
+docdesc("This module controls the 2D and 3D audio library contained in ColdSteel.")
+
+func("void ListenerUpdate(int node)")
+docdesc("Updates the listener using a node position and rotation.")
+
+func("void SoundSetMasterVolume(float volume)")
+docdesc("Set the master sound volume, in a range between 0.0 and 1.0.")
+
+func("float SoundGetMasterVolume(float volume)")
+docdesc("Get the master sound volume, in a range between 0.0 and 1.0.")
+
+func("int SoundLoad(string file)")
+docdesc("Loads a sound and returns its handle. A sound can be in WAV or OGG format.")
+
+func("void SoundFree(int sound)")
+docdesc("Frees a previously loaded sound.")
+
+func("int SoundPlay2D(int sound, int loop)")
+docdesc("Plays a sound and returns a handle to the channel used to play it.")
+
+func("int SoundPlay3D(int sound, float x, float y, float z, int loop)")
+docdesc("Plays a sound in 3D space, and returns a handle to the channel used to play it.")
+
+func("int SoundIsPlaying(int sound)")
+docdesc("Returns '1' of the specified sound is playing, or '0' otherwise.")
+
+func("int ChannelPaused(int channel)")
+docdesc("Returns '1' if the specified channel has been paused, or '0' otherwise.")
+
+func("int ChannelFinished(int channel)")
+docdesc("Returns '1' if the specified channel has finished playing the sound, or '0' otherwise.")
+
+func("int ChannelLooped(int channel)")
+docdesc("Returns '1' if the specified channel is in loop mode, or '0' otherwise.")
+
+func("float ChannelGetMinDistance(int channel)")
+docdesc("Get the distance after which the sound played by this channel won't get any louder.")
+
+func("float ChannelGetMaxDistance(int channel)")
+docdesc("Get the distance after which the sound played by this channel won't get any quieter.")
+
+func("float ChannelGetPan(int channel)")
+docdesc("Returns the pan of the sound. Takes a value between '-1' and '1', '0' is center.")
+
+func("int ChannelGetPlayPosition(int channel)")
+docdesc("Returns the current play position of the sound in milliseconds.")
+
+func("float ChannelX(int channel)")
+docdesc("Returns the X position of the sound emitted by this channel in 3D space, if it is a 3D sound.")
+
+func("float ChannelY(int channel)")
+docdesc("Returns the Y position of the sound emitted by this channel in 3D space, if it is a 3D sound.")
+
+func("float ChannelZ(int channel)")
+docdesc("Returns the Z position of the sound emitted by this channel in 3D space, if it is a 3D sound.")
+
+func("float ChannelGetVolume(int channel)")
+docdesc("Returns the volume of the channel, between '0' and '1'.")
+
+func("void ChannelPause(int channel)")
+docdesc("Pauses a channel.")
+
+func("void ChannelResume(int channel)")
+docdesc("Resumes a channel which were previously paused.")
+
+func("void ChannelSetDistance(int channel, float min, float max)")
+docdesc("Set the min and max distance for a 3D sound channel. Further max distance, the sound won't be audible. Nearer min distance, it's heard at full volume.")
+
+func("void ChannelSetPan(int channel, float pan)")
+docdesc("Set the pan of the sound. Takes a value between '-1' and '1', '0' is center.")
+
+func("void ChannelSetPosition(int channel, float x, float y, float z)")
+docdesc("Set the position in 3D space of the sound emitted by this channel, if it is a 3D sound.")
+
+func("void ChannelSetVolume(int channel, float volume)")
+docdesc("Set the volume of the channel, between '0' and '1'.")
+
+func("void ChannelStop(int channel)")
+docdesc("Stop a channel and free its resources from memory.")
+
+-- Billboard
+docpage("Billboard")
+docdesc("Billboards are 2D objects inside a 3D scene. They are represented by a plain mesh which always face the camera, and you can use the standard material functions to it (like with any type of node) to give it the appearance you want it to have.<br>Billboards are commonly used to render grass, plants, and other elements which will make your scenes look awesome.")
+
+func("int BillboardNode(int parent)")
+docdesc("Creates a new billboard node.")
+docreturns("The handle of the billboard node created.")
+docparam("parent", "Handle of another scene node, which will be the parent of the billboard node. When the parent moves or rotates, the billboard will move and rotate with it to always maintain the same relative position with it. If you don't want the billboard to have a parent, set this to '0'.")
+
+func("void BillboardResize(int billboard, float width, float height)")
+docdesc("Sets the size of a billboard.")
+
+func("float BillboardWidth(int billboard)")
+docdesc("Returns the width of a billboard.")
+
+func("float BillboardHeight(int billboard)")
+docdesc("Returns the height of a billboard.")
+
+-- Camera
+docpage("Camera")
+docdesc("A camera is a special type of scene node which is not visible in the scene, but sets how the scene will be rendered. You can position and rotate it using the standard node functions, and the render the scene from this camera.")
+
+constant("CF_BACKBUFFER", "1"); docdesc("Clear flag. Tells the engine to clear the backbuffer before rendering.")
+constant("CF_ZBUFFER", "2");    docdesc("Clear flag. Tells the engine to clear the z-buffer before rendering.")
+
+func("int CameraNode(int parent)")
+docdesc("Creates a new camera scene node.")
+docreturns("A handle to the camera scene node created.")
+docparam("parent", "Handle of another scene node, which will be the parent of the camera. When the parent moves or rotates, the camera will move and rotate with it to always maintain the same relative position with it. If you don't want the camera to have a parent, set this to '0'.")
+
+func("void CameraViewport(int cam, float x1, float y1, float x2, float y2)")
+docdesc("Defines a rectangular region of the screen to which the scene rendered through this camera will be drawn. Values are relative to the current device dimension, and can be a value between '0' and '1'. For example, a camera viewport of 0, 0, 1, 1 would represent a viewport covering the whole device. a value of 0, 0, 1, 0.5 represents a viewport which only covers the upper half of the device.")
+
+func("void CameraRange(int cam, float near, float far)")
+docdesc("Defines the rendering range of this camera. The geometry which is outside the near, far limits is not drawn. Usually you set near to '1', and far to the distance you want to be visible.")
+
+func("void CameraFov(int cam, float fov)")
+docdesc("Sets the FOV (field-of-view) of the camera. It defaults to PI / 2.5.")
+
+func("void CameraAspectRatio(int cam, float ratio)")
+docdesc("Sets the aspect ratio of the camera. The default value is 4.0 / 3.0.")
+
+func("void CameraProjection(int cam, float width, float height, float near, float far, int ortho)")
+docdesc("Set the projection matrix of the camera. This is an alternative to use CameraRange() and CameraFov(), but also has the capability to tell if you want the camera to use an orthogonal projection, which means that the camera won't have perspective.")
+docparam("camera", "Handle of the camera.")
+docparam("width, height", "Width and height in space points that the camera will see.")
+docparam("near, far", "Range of the camera.")
+docparam("ortho", "Set to '1' for an orthogonal camera, '0' otherwise.")
+
+func("void CameraLine(int cam, int x, int y, int line_vec_start, int line_vec_end)")
+docdesc("Returns a line which goes from the camera position to the far value of the camera, at the position behind the given screen coordinates.")
+docparam("camera", "Handle of the camera.")
+docparam("x, y", "Screen coordinates that you want to project in 3D.")
+docparam("line_vector_start, line_vector_end", "The vector where you want to store the start and end coordinates of the line.")
+
+func("int CameraPickNode(int cam, int x, int y, int group)")
+docdesc("Return the node which can be seen on the screen at that coordinates throught the specified camera, or '0' if no node were found. If x and y are negative, they will be ignored and the node at the center of the camera viewport will be returned.")
+
+func("void CameraToScreen(int cam, float x, float y, float z, int vec_out)")
+docdesc("Fills the x and y fields of out_vector with the screen coordinates where the specified 3D point is located.")
+
+func("void CameraRenderTarget(int cam, int texture)")
+docdesc("Sets the texture render target of this camera, or '0' to render to the display.")
+
+func("void CameraClearFlags(int cam, int flags, int color)")
+docdesc("Set the clear flags and background color for the camera.")
+docparam("flags", "Tells which buffers should be cleared. You can use CF_BACKBUFFER or CF_ZBUFFER, or a combination of both.")
+docparam("color", "If you have selected to clear the backbuffer, it will be cleared with this color.")
+
+-- Collision
+docpage("Collision")
+docdesc("You can detect collisions between objects in ColdSteel, and also trace lines for one location to another and detect the position at which that line collided with a ColdSteel scene node, or the first node that the line found.")
+
+func("void CollisionSlide(int node, float pos_x, float pos_y, float pos_z, float dest_x, float dest_y, float dest_z, float rad_x, float rad_y, float rad_z, int vec_pos, int vec_tri_a, int vec_tri_b, int vec_tri_c)")
+docdesc("This functions returns sliding information when you want to point form one point to another in 3D space. This can be used when you want to move any type of node in the space, to detect if it collides with the specified node, and get the sliding information.")
+docparam("node", "This is the node with which you want to check collisions. This is, for example, the map node.")
+docparam("pos_x, pos_y, pos_z", "This is the source position from where you are moving. This is, the space coordinates previous to the movement.")
+docparam("dest_x, dest_y, dest_z", "This is the destination position where you want to go. This is, the space coordinates after moving.")
+docparam("rad_x, rad_y, rad_z", "This is the radius of the node you are moving.")
+docparam("vector_pos", "This is the vector where you want to store the result position. If you are moving a node, you should reposition it using these values.")
+docparam("vector_tri_a, vector_tri_b, vector_tri_c", "The coordinates of the triangle with which the collision occured will be placed in these vectors. If you don't need this info, you can safely set these to '0'.")
+
+func("int CollisionLinePick(int node, float pos_x, float pos_y, float pos_z, float dest_x, float dest_y, float dest_z, int vec_pos, int vec_tri_a, int vec_tri_b, int vec_tri_c)")
+docdesc("Finds the collision point between pos_x, pos_y, pos_z, and dest_x, dest_y, dest_z. If a collision has occured, '1' will be returned, and the vectors will be filled with the collision information. If no colision is found, then '0' will be returned.")
+docparam("node", "This is the node with which you want to check collisions. This is, for example, the map node.")
+docparam("pos_x, pos_y, pos_z", "These are the origin coordinates.")
+docparam("dest_x, dest_y, dest_z", "These are the destination cordinates.")
+docparam("vector_pos", "This is the vector where the point at which collision occured will be stored.")
+docparam("vector_tri_a, vector_tri_b, vector_tri_c", "The coordinates of the triangle with which the collision occured will be placed in these vectors. If you don't need this info, you can safely set these to '0'.")
+
+func("int CollisionLineNode(float pos_x, float pos_y, float pos_z, float dest_x, float dest_y, float dest_z)")
+docdesc("Returns the first node found in the line defined by pos_x, pos_y, pos_z, and dest_x, dest_y, dest_z, or '0' if a node were not found.")
+docparam("pos_x, pos_y, pos_z", "These are the origin coordinates.")
+docparam("dest_x, dest_y, dest_z", "These are the destination cordinates.")
+
+-- Dir Listing
+docpage("Dir Listing")
+docdesc("A set of functions to search for files within directories is provided.")
+
+func("void PackageAdd(string pak)")
+docdesc("Adds a package to the resource search path. When you load a file or any media resource, the engine will look into the path specified, and if the file is not found, it will look into the packages added. This is a nice way to reduce disk usage. A package is a standard zip file.")
+
+func("int DirList(string dir)")
+docdesc("Opens a directory for listing its files, and returns a handle to it.")
+
+func("void DirClose(int dir)")
+docdesc("Closes a directory after we have finished listing its files.")
+
+func("int DirFileCount(int dir)")
+docdesc("Returns the number of files and directories found in the specified dir.")
+
+func("string DirFileName(int dir, int index)")
+docdesc("Returns the name of the file at the specified index in the specified dir")
+
+func("int DirFileIsDir(int dir, int index)")
+docdesc("Returns '1' if the specified file is a directory, or '0' otherwise.")
+
+-- Display
+docpage("Display")
+docdesc("The display is the screen or window in which everything is drawn. You can create a fullscreen display, a windowed one, or even start a display in an already existing window.")
+
+constant("DFE_RENDERTOTEXTURE", "0");           docdesc("Render to texture support (render to texture will be included in a future update).")
+constant("DFE_BILINEARFILTER", "1");            docdesc("Display feature. Bilinear filtering of textures support.")
+constant("DFE_HARDWARETNL", "2");               docdesc("Display feature. Hardware Transform and Lighting support.")
+constant("DFE_MIPMAP", "3");                    docdesc("Display feature. Texture mip-mapping support.")
+constant("DFE_STENCILBUFFER", "4");             docdesc("Display feature. Does this display have the stencil buffer enabled?")
+constant("DFE_VERTEXSHADER11", "5");            docdesc("Display feature. Vertex shader 1.1 support.")
+constant("DFE_VERTEXSHADER20", "6");            docdesc("Display feature. Vertex shader 2.0 support.")
+constant("DFE_VERTEXSHADER30", "7");            docdesc("Display feature. Vertex shader 3.0 support.")
+constant("DFE_PIXELSHADER11", "8");             docdesc("Display feature. Pixel shader 1.1 support.")
+constant("DFE_PIXELSHADER12", "9");             docdesc("Display feature. Pixel shader 1.2 support.")
+constant("DFE_PIXELSHADER13", "10");            docdesc("Display feature. Pixel shader 1.3 support.")
+constant("DFE_PIXELSHADER14", "11");            docdesc("Display feature. Pixel shader 1.4 support.")
+constant("DFE_PIXELSHADER20", "12");            docdesc("Display feature. Pixel shader 2.0 support.")
+constant("DFE_PIXELSHADER30", "13");            docdesc("Display feature. Pixel shader 3.0 support.")
+constant("DFE_ARB_VERTEXPROGRAM1", "14");       docdesc("Display feature. ARB vertex program 1.0 support.")
+constant("DFE_ARB_FRAGMENTPROGRAM1", "15");     docdesc("Display feature. ARB fragment program 1.0 support.")
+constant("DF_FULLSCREEN", "1");                 docdesc("Display flag. The display will be started in fullscreen mode instead of in a window")
+constant("DF_VSYNC", "2");                      docdesc("Display flag. Screen refresh will be vertically synced. This is used to prevent from 'tearing' images, but limits the framerate to the vertical sync rate of the monitor.")
+constant("DF_ANTIALIAS", "4");                  docdesc("Display flag. Enables fullscreen antialiasing.")
+constant("DF_OPENGL", "65536");                 docdesc("Display flag. The display will use OpenGL instead of Direct3D9.")
+
+func("void DisplayOpen(int width, int height, int depth, int flags, int win)")
+docdesc("Opens the ColdSteel display with the specified parameters.")
+docparam("width, height", "Dimensions of the display screen or window.")
+docparam("depth", "Colour depth (in bits, 16, 24 or 32).")
+docparam("flags", "Display flags. Can be a combination of DF_FULLSCREEN, DF_VSYNC, DF_ANTIALIAS, and DF_OPENGL.")
+docparam("win", "Handle to an existing window (this is, a HWND in the Win32 API), or 0 to create a new one. This is useful when you are using the engine as a .dll (SDK version only), and you want to create and handle the application window, instead of letting ColdSteel do it.")
+
+func("void DisplayClose()")
+docdesc("Closes the ColdSteel display. Nothing may be rendered after doing this.")
+
+func("void DisplayCaption(string caption)")
+docdesc("Sets the title of the ColdSteel window.")
+docparam("caption", "Title to be shown in the window title bar.")
+
+func("int DisplayClosed()")
+docdesc("Tells if the display has been closed or not.")
+docreturns("A value of '1' when the display does not exist, or '0' if it does.")
+
+func("int DisplayWidth()")
+docdesc("Returns the width of the ColdSteel display.")
+
+func("int DisplayHeight()")
+docdesc("Returns the height of the ColdSteel display.")
+
+func("int DisplayFps()")
+docdesc("Returns the frames per second at which ColdSteel is currently running.")
+
+func("int DisplayFeature(int feature)")
+docdesc("Tells if the specified feature is supported by the display.")
+docreturns("Returns '1' if the feature is supported, '0' otherwise.")
+docparam("feature", "The feature you want to check. It can be one of the display feature constants explained above in this page.")
+
+func("void DisplayResize(int width, int height)")
+docdesc("If you are rendering on a custom window, and it has been resized, you can call this function to resize the rendering area to match the new dimensions.")
+
+func("int DisplayActive()")
+docdesc("Tells if the engine window is the currently active one.")
+
+func("void DisplayScreenshot(string file)")
+docdesc("Takes a screenshot and saves it as a bitmap.")
+
+-- Drawing
+docpage("Drawing")
+docdesc("These functions are used to draw 2D stuff to the display.")
+
+func("int GetColor(int red, int green, int blue, int alpha)")
+docdesc("Generates a color value from a set of red, green, blue, alpha components. Each component ranges from 0 to 255.")
+
+func("int GetRed(int color)")
+docdesc("Returns the red component of the specified color, in the range 0 - 255.")
+
+func("int GetGreen(int color)")
+docdesc("Returns the green component of the specified color, in the range 0 - 255.")
+
+func("int GetBlue(int color)")
+docdesc("Returns the blue component of the specified color, in the range 0 - 255.")
+
+func("int GetAlpha(int color)")
+docdesc("Returns the alpha component of the specified color, in the range 0 - 255.")
+
+func("void SetColor(int color)")
+docdesc("Sets the color in which all 2D operations will be drawn.")
+
+func("void Viewport(int x, int y, int w, int h)")
+docdesc("Defines a rectangular region of the screen to which all the 2D operations will be limited.")
+
+func("void DrawLine(int x, int y, int x1, int y1)")
+docdesc("Draws a line using the specified screen coordinates.")
+
+func("void DrawRect(int x, int y, int w, int h)")
+docdesc("Draws a rectangle in the specified area of the screen.")
+
+func("void DrawTexture(int tex, int x, int y)")
+docdesc("Draws a texture to the specified screen coordinates.")
+
+--[[
+func("void DrawTextureAdvanced(int tex, int x, int y, int width, int height, int rect_x, int rect_y, int rect_width, int rect_height, int color, int usealpha)")
+docdesc("Draws a texture to the specified screen coordinates, allowing you to define some advanced settings like texture alpha and colouring, the scale with which you will draw the texture, or drawing an specific area of the texture.")
+docparam("tex", "Handle to the texture you wish to draw.")
+docparam("x, y", "Screen coordinates where the top left corener of the texture will be drawn.")
+docparam("width, height", "Size that you want to use to draw the texture. Set it to '0' to use the texture original size.")
+docparam("rect_x, rect_y", "Starting position of the section of the texture you want to draw.")
+docparam("rect_width, rect_height", "Size of the section of the texture you want to draw. Set it to '0' to draw the entire texture.")
+docparam("color", "Color with which the texture is colored. The alpha component is used to define an uniform alpha scale for the entire texture.")
+docparam("usealpha", "If the texture has an alpha channel, set this to '1' to use it. In other case, set it to '0'.")
+--]]
+
+func("void DrawText(int font, string text, int x, int y)")
+docdesc("Draws a text in the screen.")
+docparam("font", "Handle to the font you want to use to draw the text, or '0' to use the default font.")
+docparam("text", "A string containing the text you want to draw.")
+docparam("x, y", "Screen coordinates to which the text will be drawn.")
+
+func("int TextWidth(int font, string text)")
+docdesc("Returns the width of the text using the specified font.")
+
+func("int TextHeight(int font, string text)")
+docdesc("Returns the height of the text using the specified font.")
+
+-- Effect
+docpage("Effect")
+docdesc("Apart from simple shaders, ColdSteel supports effects. An effect is a complex shader, which can be composed of several techniques and passes, and is stored in a standard DirectX .FX file.")
+
+func("int EffectRegister(string effect, int base_mat)")
+docdesc("Creates a new effect.")
+docreturns("The handle of the registered effect. This handle can then be used as a standard material type.")
+docparam("effect", "A string containing the source code of the effect.")
+docparam("base_mat", "The base material type of this effect.")
+
+func("int EffectRegisterFile(string effect_file, int base_mat)")
+docdesc("Loads a new effect from a file.")
+docreturns("The handle of the registered effect. This handle can then be used as a standard material type.")
+docparam("effect_file", "The file containing the effect. This is a standard DirectX .FX file.")
+docparam("base_mat", "The base material type of this shader.")
+
+func("void EffectSetTechnique(int effect, string technique)")
+docdesc("Set the current technique for the effect. An effect can be composed by many techniques (for example: one with shaders 2.0, another with shaders 1.0, etc), and you can choose which one to use inorder to render the effect.")
+
+func("void EffectSetTexture(int effect, string var_name, int texture)")
+docdesc("Set an effect texture. A texture is a variable of type 'texture' defined in the effect. You can pass a texture created or loaded within ColdSteel to the effect using this function.")
+
+func("void EffectSetBool(int effect, string var_name, int value)")
+docdesc("Set the value of a boolean variable in the effect.")
+
+func("void EffectSetInt(int effect, string var_name, int value)")
+docdesc("Set the value of an integer variable in the effect.")
+
+func("void EffectSetFloat(int effect, string var_name, float value)")
+docdesc("Set the value of a floating point variable in the effect.")
+
+func("void EffectSetVector(int effect, string var_name, int vector)")
+docdesc("Set the value of a vector variable in the effect.")
+
+func("void EffectSetMatrix(int effect, string var_name, int matrix)")
+docdesc("Set the value of a matrix in the effect.")
+
+-- Emitter
+docpage("Emitter")
+docdesc("This node emits particles. Particles are a special type of billboards. A particle system is composed by three elements: particle data, which configure the settings of the particles to be emitted, particle emitters, which are used to locate the particles in the 3d space, and particle affectors, which configure the behaviour of the particles emitted.")
+
+func("int EmitterNode(int particle_data, int parent)")
+docdesc("Creates a new emitter node and starts emitting particles.")
+docreturns("The handle to the created emitter node.")
+docparam("particle_data", "The handle of the particles data, which configures how the particles will be emitted by the emitter node.")
+docparam("parent", "Handle of another scene node, which will be the parent of the emitter. When the parent moves or rotates, the emitter will move and rotate with it to always maintain the same relative position with the parent. If you don't want the emitter to have a parent, set this to '0'.")
+
+func("void EmitterAddFadeOutAffector(int emitter, int color, int time)")
+docdesc("Adds a fade-out affector to the particles emitted. Particles will fade out to the specified color in the milliseconds specified by time.")
+
+func("void EmitterAddGravityAffector(int emitter, float grav_x, float grav_y, float grav_z, int time)")
+docdesc("Adds a gravity affector to the particles emitted.")
+
+func("void EmitterRemoveAffectors(int emitter)")
+docdesc("Removes all the affectors attached to an emitter node.")
+
+-- Event
+docpage("Event")
+docdesc("ColdSteel uses an event system to control game flow.")
+
+constant("EV_INIT", "101");             docdesc("This event is sent when the engine initialises.")
+constant("EV_FINISH", "102");           docdesc("You must send this event when you want to exit the game.")
+constant("EV_FRAME", "103");            docdesc("This event is sent in the Professional version everytime you need to update game logic and redraw the scene. On the SDK, just do this after the other events have been processed.")
+constant("EV_DISPLAY_OPEN", "201");     docdesc("Sent when you open the display. You must recreate all the elements that are destroyed between display changes: textures, nodes...")
+constant("EV_KEY_HIT", "301");          docdesc("Sent when a key has been hit.")
+constant("EV_KEY_RELEASE", "302");      docdesc("Sent when a key has been released.")
+constant("EV_MOUSE_MOVE", "401");       docdesc("Sent when the mouse moves.")
+constant("EV_MOUSE_HIT", "402");        docdesc("Sent when a mouse button has been hit.")
+constant("EV_MOUSE_RELEASE", "403");    docdesc("Sent when a mouse button has been released.")
+constant("EV_GADGET_ACTION", "501");    docdesc("Sent when a gadget action has occured.")
+constant("EV_GADGET_ENTER", "502");     docdesc("Sent when the mouse has entered inside a gadget boundaries.")
+constant("EV_GADGET_EXIT", "503");      docdesc("Sent when the mouse exists the gadget boundaries.")
+constant("EV_GADGET_LOSTFOCUS", "504"); docdesc("Sent when a gadget loses mouse focus.")
+
+func("int EventGet()")
+docdesc("Get the next event to process, without removing it from the queue.")
+
+func("int EventPoll()")
+docdesc("Get the next event to process, and removes it form the queue.")
+
+func("void EventPost(int id, int from, int to, float a, float b, float c, string str)")
+docdesc("Sends an event.")
+
+func("int EventId()")
+docdesc("Returns the id of the event you are currently processing.")
+
+func("int EventFrom()")
+docdesc("Returns the source object of the event. For example, if you want to send an event from one node to another, you can set the 'from' and 'to' values of the event.")
+
+func("int EventTo()")
+docdesc("Returns the destination object of the event. For example, if you want to send an event from one node to another, you can set the 'from' and 'to' values of the event.")
+
+func("float EventA()")
+docdesc("Returns the first data object of the event. The meaning of this value depends on the event.")
+
+func("float EventB()")
+docdesc("Returns the second data object of the event. The meaning of this value depends on the event.")
+
+func("float EventC()")
+docdesc("Returns the third data object of the event. The meaning of this value depends on the event.")
+
+func("string EventData()")
+docdesc("Returns a string with another data you may need in the event.")
+
+-- Files
+docpage("File System")
+docdesc("ColdSteel provides a set of functions to work with files, although the programming languages compatible with it already have their own functions for this task. The advantage of using the engine built-in functions is that you can read files from within the compressed packages you can use with ColdSteel.")
+
+func("int FileRead(string file)")
+docdesc("Opens a file for reading, and returns its handle, or '0' if the file could not be opened.")
+
+func("int FileWrite(string file)")
+docdesc("Opens a file for writing, and returns its handle, or '0' if the file could not be created.")
+
+func("void FileClose(int file)")
+docdesc("Closes a file previously opened with FileRead() or FileWrite().")
+
+func("int FileSize(int file)")
+docdesc("Returns the size in bytes of the specified file handle.")
+
+func("int FilePos(int file)")
+docdesc("Returns the current offset position inside the file, in bytes.")
+
+func("void FileSeek(int file, int pos, int relative)")
+docdesc("Moves the file pointer to a new position. It can be relative to the current position if set to '1', or to the beginning of the file otherwise.")
+
+func("int FileReadByte(int file)")
+docdesc("Reads a byte from the specified file, and returns its value casted to int.")
+
+func("int FileReadShort(int file)")
+docdesc("Reads a short int (2 bytes) from the specified file, and returns its value casted to int.")
+
+func("int FileReadInt(int file)")
+docdesc("Reads an integer from the specified file, and returns its value.")
+
+func("float FileReadFloat(int file)")
+docdesc("Reads a float from the specified file, and returns its value.")
+
+func("string FileReadString(int file)")
+docdesc("Reads a null-terminated string from the specified file, and returns its value.")
+
+func("void FileReadBytes(int file, int buf, int size)")
+docdesc("Reads the specified number of bytes from a byte, and puts them in the memory pointed by buffer.")
+
+func("void FileWriteByte(int file, int value)")
+docdesc("Cast the specified integer value to a byte, and writes it.")
+
+func("void FileWriteShort(int file, int value)")
+docdesc("Cast the specified integer value to a short integer, and writes it.")
+
+func("void FileWriteInt(int file, int value)")
+docdesc("Writes the specified value to the file.")
+
+func("void FileWriteFloat(int file, float value)")
+docdesc("Writes the specified float value to the file.")
+
+func("void FileWriteString(int file, string str)")
+docdesc("Writes the specified null-terminated string to the file.")
+
+func("void FileWriteBytes(int file, int buf, int size)")
+docdesc("Reads size bytes from buffer, and writes them to the file.")
+
+func("string FileGetExt(string filename)")
+docdesc("Extracts the extension of the specified filename.")
+
+func("string FileGetDir(string filename)")
+docdesc("Extracts the directory part of the specified filename.")
+
+func("string FileStripExt(string filename)")
+docdesc("Returns the specified filename, without the extension.")
+
+func("string FileStripDir(string filename)")
+docdesc("Returns the specified filename, without the directory part.")
+
+-- Font
+docpage("Font")
+docdesc("Fonts are used to display texts on screen. Each font defines a different look and size for your text, and are composed of images with a list of characers that you can use in your texts. ColdSteel comes with a tool that allows you to convert any TrueType font to a ColdSteel image font.")
+
+func("int FontLoad(string file)")
+docdesc("Loads an image font, so you can use it to print text to screen.")
+docreturns("A handle to the font loaded.")
+docparam("file", "File to the image containing the font charset. The file must be an image in one of the following formats: BMP, PNG, JPG, PCX, PSD.")
+
+func("void FontFree(int font)")
+docdesc("Frees a previously loaded font.")
+docparam("font", "Handle of the font, as returned by FontLoad().")
+
+-- Gadget
+docpage("Gadget")
+docdesc("A gadget is any type of element (a window, a button, a menu...) inside the user interface of your game. You can create any type of gadget using the functions in the 'Gui' module, and modify your gadgets later with these functions.")
+
+constant("GT_BUTTON", "0")
+constant("GT_CHECKBOX", "1")
+constant("GT_COMBOBOX", "2")
+constant("GT_EDITBOX", "3")
+constant("GT_GROUP", "4")
+constant("GT_LISTBOX", "5")
+constant("GT_MENU", "6")
+constant("GT_SCROLLBAR", "7")
+constant("GT_TABBER", "8")
+constant("GT_TEXT", "9")
+constant("GT_TEXTURE", "10")
+constant("GT_TOOLBAR", "11")
+constant("GT_WINDOW", "12")
+
+func("void GadgetFree(int gadget)")
+docdesc("Frees a previously created gadget.")
+
+func("int GadgetType(int gadget)")
+docdesc("Returns the type of the specified gadget. It will return a value from the list of gadget types listed above.")
+
+func("void GadgetEnable(int gadget, int state)")
+docdesc("Enables or disables a gadget.")
+docparam("state", "'1' to enable a gadget (the intial default state), '0' to disable it.")
+
+func("string GadgetGetText(int gadget)")
+docdesc("Returns the text of a gadget (the text of a button, or the title of a window, for example).")
+
+func("void GadgetSetText(int gadget, string text)")
+docdesc("Set the text of a gadget (the text of a button, or the title of a window, for example).")
+
+func("void GadgetShape(int gadget, int x, int y, int w, int h)")
+docdesc("Change the position and size of a gadget.")
+
+func("void GadgetVisible(int gadget, int state)")
+docdesc("Set the visible mode of a gadget.")
+docparam("state", "'1' to make the gadget visible (the initial default state), '0' to make it invisible.")
+
+func("int GadgetChildren(int gadget)")
+docdesc("Returns the number of children that the gadget has (for example, the number of gadgets contained in a window).")
+
+func("int GadgetChild(int gadget, int index)")
+docdesc("Returns the handle of the children with the specified index.")
+
+func("int GadgetParent(int parent)")
+docdesc("Returns the parent handle of the specified gadget.")
+
+func("void GadgetSetImage(int gadget, int tex, int x, int y, int width, int height, int alpha)")
+docdesc("Set a texture image for the gadget. you can specify if you want to use the alpha channel in the texture or not.")
+
+func("void GadgetSetFont(int gadget, int font)")
+docdesc("You can pass a font to use by the gadget, or set to '0' to use the skin default font.")
+
+func("void GadgetSetColor(int gadget, int color, int override)")
+docdesc("You can set override to '1' and specify one color to use instead of the skin default color. Set override to '0' to use the skin color.")
+
+func("void GadgetSetState(int gadget, int state)")
+docdesc("Set the state of the gadget. In most gadgets, this value can either be '1' or '0', But on scrollbar gadgets this is used to set the current value of the scrollbar.")
+
+func("int GadgetGetState(int gadget)")
+docdesc("Returns the state of the gadget.")
+
+func("int GadgetAddItem(int gadget, string text, int id)")
+docdesc("Adds a new item to the gadget.")
+
+func("int GadgetGetItemId(int gadget, int index)")
+func("string GadgetGetItemText(int gadget, int index)")
+func("int GadgetSelectedItem(int gadget)")
+func("void GadgetSelectItem(int gadget, int index)")
+func("int GadgetCountItems(int gadget)")
+func("void GadgetSetItemText(int gadget, int index, string text)")
+func("void GadgetEnableItem(int gadget, int index, int enable)")
+func("void GadgetRemoveItem(int gadget, int index)")
+func("void GadgetRemoveItems(int gadget)")
+
+-- Gui
+docpage("Gui")
+docdesc("ColdSteel comes with a builtin Gui system which can be used to build the HUD interface of your games as well as making editors.")
+
+constant("GF_OK", "1")
+constant("GF_CANCEL", "2")
+constant("GF_YES", "4")
+constant("GF_NO", "8")
+constant("GF_BORDER", "16")
+constant("GF_FILBACK", "32")
+constant("GF_WORDWRAP", "64")
+
+func("int GuiButton(int x, int y, int w, int h, int parent)")
+docdesc("Create a button gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiCheckBox(int x, int y, int w, int h, int parent)")
+docdesc("Create a checkbox gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiComboBox(int x, int y, int w, int h, int parent)")
+docdesc("Create a combobox gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiContextMenu(int x, int y, int w, int h, int parent)")
+docdesc("Create a context menu gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiEditBox(int x, int y, int w, int h, int parent, int maxchars, int border)")
+docdesc("Create an editbox gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("maxchars", "Maximum number of character you can input in the box.")
+docparam("border", "'1' to make an editbox with border, '0' otherwise.")
+
+func("int GuiGroup(int x, int y, int w, int h, int parent)")
+docdesc("Create a group gadget and returns its handle. This gadget is simply used to group other gadgets.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiListBox(int x, int y, int w, int h, int parent, int draw_background)")
+docdesc("Create a listbox gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("draw_background", "'1' to make a listbox with background, '0' to make the background transparent.")
+
+func("int GuiMenu(int parent)")
+docdesc("Create a menu gadget and returns its handle.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiMessageBox(int parent, string caption, string text, int flags)")
+docdesc("Create a messagebox gadget and returns its handle.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("caption", "Caption of the messagebox window.")
+docparam("text", "Text that the messagebox will display.")
+docparam("flags", "A combination of the following values: GF_OK, GF_CANCEL, GF_YES, GF_NO.")
+
+func("int GuiScrollBar(int x, int y, int w, int h, int parent, int horizontal, int max, int step)")
+docdesc("Create a scrollbar gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("horizontal", "'1' to make the scrollbar horizontal, '0' to make it vertical.")
+docparam("max", "Maximum value that the scrollbar can reach")
+docparam("step", "Minimum step in which the scrollbar can be increased.")
+
+func("int GuiTabber(int x, int y, int w, int h, int parent, int flags)")
+docdesc("Create a tabber gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("flags", "A combination of the following values: GF_BORDER (draw tabber with border), GF_FILLBACK (draw tabber with background.)")
+
+func("int GuiText(int x, int y, int w, int h, int parent, int flags)")
+docdesc("Create a text gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("flags", "A combination of the following values: GF_BORDER (draw text with border), GF_FILLBACK (draw text with background), GF_WORDWRAP (wrap around words when reaching the right margin of the gadget).")
+
+func("int GuiTexture(int x, int y, int parent, int tex, int use_alpha)")
+docdesc("Create a texture gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("tex", "Texture to draw.")
+docparam("use_alpha", "'1' to use the alpha channel of the texture, '0' otherwise.")
+
+func("int GuiToolbar(int parent)")
+docdesc("Create a toolbar gadget and returns its handle.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+
+func("int GuiWindow(int x, int y, int w, int h, int parent, int modal)")
+docdesc("Create a window gadget and returns its handle.")
+docparam("x, y", "Initial position of the gadget relative to its parent gadget.")
+docparam("w, h", "Initial size of the gadget.")
+docparam("parent", "Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).")
+docparam("modal", "'1' to lock the window until it is closed, '0' otherwise.")
+
+func("void GuiDraw()")
+docdesc("Draws the gui to the display. This must be called between SceneBegin() and SceneEnd(), and usually after the call to SceneRender().")
+
+-- Input
+docpage("Input")
+docdesc("The functions in this module are used to handle keyboard and mouse input events.")
+
+constant("MB_LEFT", "1")
+constant("MB_RIGHT", "2")
+constant("MB_MIDDLE", "3")
+
+constant("KEY_LBUTTON", "0x01")
+constant("KEY_RBUTTON", "0x02")
+constant("KEY_CANCEL", "0x03")
+constant("KEY_MBUTTON", "0x04")
+constant("KEY_XBUTTON1", "0x05")
+constant("KEY_XBUTTON2", "0x06")
+constant("KEY_BACK", "0x08")
+constant("KEY_TAB", "0x09")
+constant("KEY_CLEAR", "0x0C")
+constant("KEY_RETURN", "0x0D")
+constant("KEY_ENTER", "0x0D")
+constant("KEY_SHIFT", "0x10")
+constant("KEY_CONTROL", "0x11")
+constant("KEY_MENU", "0x12")
+constant("KEY_PAUSE", "0x13")
+constant("KEY_CAPITAL", "0x14")
+constant("KEY_KANA", "0x15")
+constant("KEY_HANGUEL", "0x15")
+constant("KEY_HANGUL", "0x15")
+constant("KEY_JUNJA", "0x17")
+constant("KEY_FINAL", "0x18")
+constant("KEY_HANJA", "0x19")
+constant("KEY_KANJI", "0x19")
+constant("KEY_ESC", "0x1B")
+constant("KEY_ESCAPE", "0x1B")
+constant("KEY_CONVERT", "0x1C")
+constant("KEY_NONCONVERT", "0x1D")
+constant("KEY_ACCEPT", "0x1E")
+constant("KEY_MODECHANGE", "0x1F")
+constant("KEY_SPACE", "0x20")
+constant("KEY_PRIOR", "0x21")
+constant("KEY_NEXT", "0x22")
+constant("KEY_END", "0x23")
+constant("KEY_HOME", "0x24")
+constant("KEY_LEFT", "0x25")
+constant("KEY_UP", "0x26")
+constant("KEY_RIGHT", "0x27")
+constant("KEY_DOWN", "0x28")
+constant("KEY_SELECT", "0x29")
+constant("KEY_PRINT", "0x2A")
+constant("KEY_EXECUT", "0x2B")
+constant("KEY_SNAPSHOT", "0x2C")
+constant("KEY_INSERT", "0x2D")
+constant("KEY_DELETE", "0x2E")
+constant("KEY_HELP", "0x2F")
+constant("KEY_0", "0x30")
+constant("KEY_1", "0x31")
+constant("KEY_2", "0x32")
+constant("KEY_3", "0x33")
+constant("KEY_4", "0x34")
+constant("KEY_5", "0x35")
+constant("KEY_6", "0x36")
+constant("KEY_7", "0x37")
+constant("KEY_8", "0x38")
+constant("KEY_9", "0x39")
+constant("KEY_A", "0x41")
+constant("KEY_B", "0x42")
+constant("KEY_C", "0x43")
+constant("KEY_D", "0x44")
+constant("KEY_E", "0x45")
+constant("KEY_F", "0x46")
+constant("KEY_G", "0x47")
+constant("KEY_H", "0x48")
+constant("KEY_I", "0x49")
+constant("KEY_J", "0x4A")
+constant("KEY_K", "0x4B")
+constant("KEY_L", "0x4C")
+constant("KEY_M", "0x4D")
+constant("KEY_N", "0x4E")
+constant("KEY_O", "0x4F")
+constant("KEY_P", "0x50")
+constant("KEY_Q", "0x51")
+constant("KEY_R", "0x52")
+constant("KEY_S", "0x53")
+constant("KEY_T", "0x54")
+constant("KEY_U", "0x55")
+constant("KEY_V", "0x56")
+constant("KEY_W", "0x57")
+constant("KEY_X", "0x58")
+constant("KEY_Y", "0x59")
+constant("KEY_Z", "0x5A")
+constant("KEY_LWIN", "0x5B")
+constant("KEY_RWIN", "0x5C")
+constant("KEY_APPS", "0x5D")
+constant("KEY_SLEEP", "0x5F")
+constant("KEY_NUMPAD0", "0x60")
+constant("KEY_NUMPAD1", "0x61")
+constant("KEY_NUMPAD2", "0x62")
+constant("KEY_NUMPAD3", "0x63")
+constant("KEY_NUMPAD4", "0x64")
+constant("KEY_NUMPAD5", "0x65")
+constant("KEY_NUMPAD6", "0x66")
+constant("KEY_NUMPAD7", "0x67")
+constant("KEY_NUMPAD8", "0x68")
+constant("KEY_NUMPAD9", "0x69")
+constant("KEY_MULTIPLY", "0x6A")
+constant("KEY_ADD", "0x6B")
+constant("KEY_SEPARATOR", "0x6C")
+constant("KEY_SUBTRACT", "0x6D")
+constant("KEY_DECIMAL", "0x6E")
+constant("KEY_DIVIDE", "0x6F")
+constant("KEY_F1", "0x70")
+constant("KEY_F2", "0x71")
+constant("KEY_F3", "0x72")
+constant("KEY_F4", "0x73")
+constant("KEY_F5", "0x74")
+constant("KEY_F6", "0x75")
+constant("KEY_F7", "0x76")
+constant("KEY_F8", "0x77")
+constant("KEY_F9", "0x78")
+constant("KEY_F10", "0x79")
+constant("KEY_F11", "0x7A")
+constant("KEY_F12", "0x7B")
+constant("KEY_F13", "0x7C")
+constant("KEY_F14", "0x7D")
+constant("KEY_F15", "0x7E")
+constant("KEY_F16", "0x7F")
+constant("KEY_F17", "0x80")
+constant("KEY_F18", "0x81")
+constant("KEY_F19", "0x82")
+constant("KEY_F20", "0x83")
+constant("KEY_F21", "0x84")
+constant("KEY_F22", "0x85")
+constant("KEY_F23", "0x86")
+constant("KEY_F24", "0x87")
+constant("KEY_NUMLOCK", "0x90")
+constant("KEY_SCROLL", "0x91")
+constant("KEY_LSHIFT", "0xA0")
+constant("KEY_RSHIFT", "0xA1")
+constant("KEY_LCONTROL", "0xA2")
+constant("KEY_RCONTROL", "0xA3")
+constant("KEY_LMENU", "0xA4")
+constant("KEY_RMENU", "0xA5")
+constant("KEY_COMMA", "0xBC")
+constant("KEY_PLUS", "0xBB")
+constant("KEY_MINUS", "0xBD")
+constant("KEY_PERIOD", "0xBE")
+constant("KEY_ATTN", "0xF6")
+constant("KEY_CRSEL", "0xF7")
+constant("KEY_EXSEL", "0xF8")
+constant("KEY_EREOF", "0xF9")
+constant("KEY_PLAY", "0xFA")
+constant("KEY_ZOOM", "0xFB")
+constant("KEY_PA1", "0xFD")
+constant("KEY_OEM_CLEAR", "0xFE")
+
+func("void MousePosition(int x, int y)")
+docdesc("Positions the mouse pointer in the specified x, y device coordinates.")
+
+func("void MouseHide(int hide)")
+docdesc("If hide is '1', hides the mouse pointer. If it is '0', shows it.")
+
+func("int MouseX()")
+docdesc("Returns the device x coordinate of the mouse pointer.")
+
+func("int MouseY()")
+docdesc("Returns the device y coordinate of the mouse pointer.")
+
+func("int MouseHit(int button)")
+docdesc("Returns '1' if the specified button has been pressed, or '0' otherwise.")
+docparam("button", "The button you want to check. Use MB_LEFT, MB_RIGHT, or MB_MIDDLE.")
+
+func("int MouseDown(int button)")
+docdesc("Returns '1' if the specified button is pressed, or '0' otherwise.")
+docparam("button", "The button you want to check. Use MB_LEFT, MB_RIGHT, or MB_MIDDLE.")
+
+func("int MouseGet()")
+docdesc("Returns the number of the last button pressed.")
+
+func("int MouseReleased()")
+docdesc("Returns the number of the last button released.")
+
+func("int KeyHit(int key)")
+docdesc("Returns '1' if the specified key has been pressed, or '0' otherwise.")
+docparam("key", "The key you want to check. Each key has an associated constant value, named KEY_NAME. For example, KEY_UP, KEY_RETURN, KEY_ESC, KEY_A, KEY_6 and KEY_SPACE are valid values.")
+
+func("int KeyDown(int key)")
+docdesc("Returns '1' if the specified key is pressed, or '0' otherwise.")
+docparam("key", "The key you want to check. Each key has an associated constant value, named KEY_NAME. For example, KEY_UP, KEY_RETURN, KEY_ESC, KEY_A, KEY_6 and KEY_SPACE are valid values.")
+
+func("int KeyGet()")
+docdesc("Returns the last key pressed.")
+
+func("int KeyReleased()")
+docdesc("Returns the last key released.")
+
+-- Joystick
+docpage("Joystick")
+docdesc("Although most PC games are controlled through the keyboard and mouse, being able to use a joystick is a really good option, as many games are better controlled this way. ColdSteel comes with a set of functions to manage analog joysticks (the same functions can be used to handle classic digital pads). Up to two joysticks are supported, numbered 0 and 1.")
+
+func("string JoyName(int id)")
+docdesc("Returns the name of the specified joystick. If the joystick is not available, an empty string will be returned.")
+
+func("int JoyButton(int id, int button)")
+docdesc("Returns '1' if the specified joystick button is pressed, or '0' otherwise. Joystick button indices start at '1'.")
+
+func("float JoyAxis(int id, int axis)")
+docdesc("Returns the position of the specified axis (a value from -1.0 to 1.0). Joystick button indices range form '1' to JoyNumAxes().")
+
+func("int JoyNumAxes(int id)")
+docdesc("Returns the number of axes available for the specified joystick.")
+
+-- Light
+docpage("Light")
+docdesc("Lights are used to illuminate the scene. Current hardware only allows 8 lights in the scene at the same time.")
+
+constant("LT_POINT", "0");          docdesc("Point light. It has a position in space and emits light in all directions.")
+constant("LT_DIRECTIONAL", "1");    docdesc("Directional light. Similar to the sunlight. Comes from a direction in an infinite space.")
+
+func("int LightNode(int parent)")
+docdesc("Creates a new point light scene node.")
+docparam("parent", "Handle of another scene node, which will be the parent of the light. When the parent moves or rotates, the light will move and rotate with it to always maintain the same relative position with it. If you don't want the light to have a parent, set this to '0'.")
+docreturns("The handle of the light node created.")
+
+func("void LightType(int light, int type)")
+docdesc("Set the type of the light, which can be point (default) or directional.")
+
+func("void LightRadius(int light, float radius)")
+docdesc("Set the radius of a light.")
+
+func("void LightAmbient(int light, int color)")
+docdesc("Set the ambient color of the light.")
+
+func("void LightDiffuse(int light, int color)")
+docdesc("Set the diffuse color of the light.")
+
+func("void LightSpecular(int light, int color)")
+docdesc("Set the specular color of the light.")
+
+-- Material
+docpage("Material")
+docdesc("Materials define how a scene node will look, defining properties like textures and colors of the node. They can be created from MaterialData structures, which are usually loaded from scripts and then converted to materials to apply them to nodes.")
+
+constant("MF_FULLBRIGHT", "1");         docdesc("Material flag. The scene node will be completely lit.")
+constant("MF_FLATSHADING", "2");        docdesc("Material flag. The scene node won't receive any lights, it will appear in the ambient color.")
+constant("MF_FOG", "4");                docdesc("Material flag. The scene node will be sensible to fog.")
+constant("MF_NOCULL", "8");             docdesc("Material flag. Counter clock-wise triangles won't be occluded.")
+constant("MF_WIREFRAME", "16");         docdesc("Material flag. The scene node will be drawn in wireframe mode.")
+constant("MF_NOZDEPTH", "32");          docdesc("Material flag. Ignores the z-buffer when the scene node is being rendered.")
+constant("MF_NOZWRITE", "64");          docdesc("Material flag. Does not write to the z-buffer when the scene node is being rendered.")
+constant("MF_ANISOTROPIC", "128");      docdesc("Material flag. Enables anisotropic filtering for this material. By default, trilinear filtering is used.")
+
+constant("MT_MODULATE", "1");           docdesc("Material type. Second texture layer is modulated with the first one.")
+constant("MT_MODULATE2X", "2");         docdesc("Material type. Second texture layer is multiplied by two and modulated with the first one.")
+constant("MT_MODULATE4X", "3");         docdesc("Material type. Second texture layer is multiplied by four and modulated with the first one.")
+constant("MT_DETAIL", "4");             docdesc("Material type. A detail-mapped material. First texture is the diffuse map, second texture is the detail map.")
+constant("MT_ADD", "5");                docdesc("Material type. A single texture transparent material. The blending is done by adding the source color to the dest color.")
+constant("MT_VERTEX_ALPHA", "6");       docdesc("Material type. A single texture transparent material. Transparency is based on the vertex alpha value.")
+constant("MT_ALPHA", "7");              docdesc("Material type. The texture is transparent based on its alpha channel. Only one texture is used.")
+constant("MT_MASKED", "8");             docdesc("Material type. Pixels of the texture with an alpha components greater than 127 are drawn opaque, the others are not drawn.")
+constant("MT_REFLECTION", "9");         docdesc("Material type. A planar-mapped reflective material. First texture layer contains the diffuse texture. Second texture layer contains the reflection map.")
+constant("MT_REFLECTION_ALPHA", "10");  docdesc("Material type. A planar-mapped reflective material, with alpha-blending depending on the vertices alpha values. First texture layer contains the diffuse texture. Second texture layer contains the reflection map.")
+constant("MT_NORMAL", "11");            docdesc("Material type. A normal-mapped material. First texture layer is the diffuse map, second texture layer is the normal map.")
+constant("MT_PARALLAX", "12");          docdesc("Material type. A parallax-mapped material. First texture layer is the diffuse map, second texture layer is the normal map.")
+
+func("int MaterialCreate(string name)")
+docdesc("Creates a new material and returns its handle. You can specify an empty string as name.")
+
+func("int MaterialFromData(int data)")
+docdesc("Creates a new material based on the description of the MaterialData. It returns the handle of the new material. The MaterialData structure remains untouched.")
+
+func("int MaterialToData(int mat)")
+docdesc("Creates a new MaterialData structure with the settings of the specified material, and returns its handle. If a MaterialData already exists for the specified material (this is, if a MaterialData with the same name as the material is found), this functions will not create any MaterialData and return '0'.")
+
+func("void MaterialFree(int mat)")
+docdesc("Frees a material from memory.")
+
+func("void MaterialSetType(int mat, int newtype)")
+docdesc("Set the type of the material. It can be one of the material types defined in the constants section.")
+
+func("void MaterialSetFlags(int mat, int flags)")
+docdesc("Set the material flags. It can be one or more of the material flags values combined.")
+
+func("void MaterialSetTexture(int mat, int tex, int layer)")
+docdesc("Set a texture layer of the material.")
+docparam("material", "Handle of the material.")
+docparam("texture", "Handle of the texture.")
+docparam("layer", "Texture layer. It can be '0' or '1'.")
+
+func("void MaterialSetAmbient(int mat, int color)")
+docdesc("Set the ambient color for the material.")
+
+func("void MaterialSetDiffuse(int mat, int color)")
+docdesc("Set the diffuse color for the material.")
+
+func("void MaterialSetEmissive(int mat, int color)")
+docdesc("Set the emissive color for the material.")
+
+func("void MaterialSetSpecular(int mat, int color)")
+docdesc("Set the specular color for the material.")
+
+func("void MaterialSetShininess(int mat, float shininess)")
+docdesc("Set the shininess of the material.")
+
+func("void MaterialSetParam(int mat, float param)")
+docdesc("Set the parameter value of the material. The use of this value depends on the material type. Currently, it is used to define the height of the parallax effect.")
+
+func("string MaterialGetName(int mat)")
+docdesc("Returns the material name.")
+
+func("int MaterialGetType(int mat)")
+docdesc("Returns the material type.")
+
+func("int MaterialGetFlags(int mat)")
+docdesc("Returns the material flags.")
+
+func("int MaterialGetTexture(int mat, int layer)")
+docdesc("Returns the material texture for the specified layer.")
+
+func("int MaterialGetAmbient(int mat)")
+docdesc("Returns the material ambient color.")
+
+func("int MaterialGetDiffuse(int mat)")
+docdesc("Returns the material diffuse color.")
+
+func("int MaterialGetEmissive(int mat)")
+docdesc("Returns the material emissive color.")
+
+func("int MaterialGetSpecular(int mat)")
+docdesc("Returns the material specular color.")
+
+func("float MaterialGetShininess(int mat)")
+docdesc("Returns the material shininess.")
+
+func("float MaterialGetParam(int mat)")
+docdesc("Returns the value of the material param. The use of this value depends on the material type. Currently, it is used to define the height of the parallax effect.")
+
+-- Material Script
+
+docpage("Material Data")
+docdesc("MaterialData structures define a set of visual properties that can be mapped onto a material and applied to a node. MaterialData structures are unique, with a name identifying it, meaning that you cannot have more than one MaterialData with the same name. They are usually created in ColdSteel Material Editor and then loaded into the engine through a .mat script. Its main use is to search for materials with a specific name inside a node, and then replace its visual settings with the ones you defined in your script.")
+
+func("int MaterialDataCreate(string name)")
+docdesc("Creates a new MaterialData and returns its handle. Each MaterialData has a unique name, so you cannot have multiple material data structures with the same name.")
+
+func("int MaterialDataLoad(string file)")
+docdesc("Loads a material data script from the specified file. Material data can be exported to a XML file, and you can load its data from the file using this function. The MaterialData created will be returned.")
+
+func("void MaterialDataSave(int data, string file, string rel_path)")
+docdesc("Saves the material data to the specified XML file. The file extension for materials must be .mat, in order for the engine editors to load material data property. rel_path defines a path which will be stripped form the pathname when saved. For example, if you have loaded the texture \\\"/data/textures/tex01.jpg\\\", and define rel_path as \\\"/data/textures/\\\", the texture will be saved as \\\"tex01.jpg\\\".")
+
+func("void MaterialDataFree(int data)")
+docdesc("Frees a material data from memory. After the data is freed, you can create new a MaterialData structure with the name of this one.")
+
+func("int MaterialDataFind(string name)")
+docdesc("Returns the MaterialData with the specified name, if it exists. If no structure is found, the funcion returns '0'.")
+
+func("void MaterialDataSetType(int data, int newtype)")
+docdesc("Set the type of the material data. It can be one of the material types defined in the constants section.")
+
+func("void MaterialDataSetFlags(int data, int flags)")
+docdesc("Set the material data flags. It can be one or more of the material flags values combined.")
+
+func("void MaterialDataSetTexture(int mat, int tex, int layer)")
+docdesc("Set a texture layer of the material.")
+docparam("material", "Handle of the material.")
+docparam("texture", "Handle of the texture.")
+docparam("layer", "Texture layer. It can be '0' or '1'.")
+
+func("void MaterialDataSetAmbient(int mat, int color)")
+docdesc("Set the ambient color for the material.")
+
+func("void MaterialDataSetDiffuse(int mat, int color)")
+docdesc("Set the diffuse color for the material.")
+
+func("void MaterialDataSetEmissive(int mat, int color)")
+docdesc("Set the emissive color for the material.")
+
+func("void MaterialDataSetSpecular(int mat, int color)")
+docdesc("Set the specular color for the material.")
+
+func("void MaterialDataSetShininess(int mat, float shininess)")
+docdesc("Set the shininess of the material.")
+
+func("void MaterialDataSetParam(int mat, float param)")
+docdesc("Set the parameter value of the material. The use of this value depends on the material type. Currently, it is used to define the height of the parallax effect.")
+
+func("string MaterialDataGetName(int mat)")
+docdesc("Returns the material name.")
+
+func("int MaterialDataGetType(int mat)")
+docdesc("Returns the material type.")
+
+func("int MaterialDataGetFlags(int mat)")
+docdesc("Returns the material flags.")
+
+func("int MaterialDataGetTexture(int mat, int layer)")
+docdesc("Returns the material texture for the specified layer.")
+
+func("int MaterialDataGetAmbient(int mat)")
+docdesc("Returns the material ambient color.")
+
+func("int MaterialDataGetDiffuse(int mat)")
+docdesc("Returns the material diffuse color.")
+
+func("int MaterialDataGetEmissive(int mat)")
+docdesc("Returns the material emissive color.")
+
+func("int MaterialDataGetSpecular(int mat)")
+docdesc("Returns the material specular color.")
+
+func("float MaterialDataGetShininess(int mat)")
+docdesc("Returns the material shininess.")
+
+func("float MaterialDataGetParam(int mat)")
+docdesc("Returns the value of the material param. The use of this value depends on the material type. Currently, it is used to define the height of the parallax effect.")
+
+-- Math
+docpage("Math")
+docdesc("This module contains a set of standard math functions.")
+
+func("float MathFloor(float val)")
+docdesc("Rounds val downward. For example, '1.75' will round to '1.0', and '-1.75' to '-2.0'.")
+
+func("float MathCeil(float val)")
+docdesc("Rounds val upwards. For example, '1.75' will round to '2.0', and '-1.75' to '1.0'.")
+
+func("float MathAbs(float val)")
+docdesc("Returns the absolute value of a number, this is, its positive value.")
+
+func("float MathSqr(float val)")
+docdesc("Returns the square root of a value.")
+
+func("float MathSin(float val)")
+docdesc("Returns the sine of an angle, in degrees.")
+
+func("float MathCos(float val)")
+docdesc("Returns the cosine of an angle, in degrees.")
+
+func("float MathTan(float val)")
+docdesc("Returns the tangent of an angle, in degrees.")
+
+func("float MathASin(float val)")
+docdesc("Returns the arc sine of an angle, in degrees.")
+
+func("float MathACos(float val)")
+docdesc("Returns the arc cosine of an angle, in degrees.")
+
+func("float MathATan(float val)")
+docdesc("Returns the arc tangent of an angle, in degrees.")
+
+func("float MathATan2(float x, float y)")
+docdesc("Returns the angle between the positive x-axis and a vector from the point (0,0) to the point (x,y), in degrees.")
+
+func("float MathExp(float val)")
+docdesc("Returns the exponential value of the parameter.")
+
+func("float MathLog(float val)")
+docdesc("Returns the natural logarithm of the parameter.")
+
+func("float MathLog10(float val)")
+docdesc("Returns the logarithm base 10 of the parameter.")
+
+func("int MathRand(int min, int max)")
+docdesc("Returns a pseudo-random number in the range from min to max.")
+
+func("void MathRandSeed(int seed)")
+docdesc("Initialize random number generator.")
+
+-- Matrix
+docpage("Matrix")
+docdesc("ColdSteel contains functions to manage 4x4 matrices. A matrix defines a transformation in 3D space. It is oriented to users with advanced knowledge of 3D programming.")
+
+func("int MatrixCreate()")
+docdesc("Creates a new 4x4 matrix and returns its handle.")
+
+func("void MatrixFree(int matrix)")
+docdesc("Frees a previously created matrix.")
+
+func("void MatrixAdd(int matrix, int matrix2)")
+docdesc("Adds matrix2 to matrix.")
+
+func("void MatrixCopy(int matrix, int matrix2)")
+docdesc("Copies matrix2 inside matrix.")
+
+func("void MatrixDiv(int matrix, int matrix2)")
+docdesc("Divides matrix by matrix2.")
+
+func("float MatrixElement(int matrix, int row, int column)")
+docdesc("Returns the value of the matrix element located at the specified position (row and column must be between 0 and 15).")
+
+func("int MatrixEqual(int matrix, int matrix2)")
+docdesc("Returns '1' if both matrices equal, or '0' otherwise.")
+
+func("void MatrixGetRotation(int matrix, int vector)")
+docdesc("Converts the rotation defined by the matrix into an euler rotation, and put it into the specified vector.")
+
+func("void MatrixGetTranslation(int matrix, int vector)")
+docdesc("Puts the translation defined by the matrix into vector.")
+
+func("void MatrixIdentity(int matrix)")
+docdesc("Set the identity matrix.")
+
+func("void MatrixInterpolate(int matrix, int matrix2, float time)")
+docdesc("Interpolates matrix with matrix2, storing the result in matrix. time must be a value between 0.0 and 1.0.")
+
+func("int MatrixInvert(int matrix)")
+docdesc("Inverts matrix.")
+
+func("void MatrixMul(int matrix, int matrix2)")
+docdesc("Multiplies matrix by matrix2.")
+
+func("void MatrixSet(int matrix, int row, int column, float val)")
+docdesc("Set the value at the specified matrix position (row and column must be between 0 and 15).")
+
+func("void MatrixSetRotation(int matrix, int vector)")
+docdesc("Set the matrix rotation based on the euler angles defined in vector.")
+
+func("void MatrixSetScale(int matrix, int vector)")
+docdesc("Scales a matrix based on the values defined in vector.")
+
+func("void MatrixSetTranslation(int matrix, int vector)")
+docdesc("Translates a matrix based on the values defined in vector.")
+
+func("void MatrixSub(int matrix, int matrix2)")
+docdesc("Substracts matrix2 from matrix.")
+
+func("void MatrixTranspose(int matrix)")
+docdesc("Transposes matrix.")
+
+-- Mesh
+docpage("Mesh")
+docdesc("A mesh contains information about the shape of a complex object in a 3D scene. A mesh is composed of a list of animations, triangles and vertices.")
+
+constant("CI_NULL", "0");       docdesc("Collision info. Do not generate collision information.")
+constant("CI_BBOX", "1");       docdesc("Collision info. Generate collision info based on the mesh bounding box.")
+constant("CI_TRIANGLES", "2");  docdesc("Collision info. Generate collision info based on the mesh triangles.")
+constant("CI_OCTREE", "3");     docdesc("Collision info. Generate collision info based on the mesh triangles, and sort the information in an octree. This takes more time to generate, but collisions are much faster.")
+
+func("int MeshLoad(string file)")
+docdesc("Loads a mesh from disk.")
+docreturns("A handle to the mesh created.")
+docparam("file", "File of the mesh. It must be a mesh in one of the following formats: B3D, MD2, MS3D, X.")
+
+func("int MeshTerrainLoad(string heightmap)")
+docdesc("Loads a terrain mesh from a heightmap. A terrain mesh is a standard static mesh generated from a heightmap image instead of a mesh file. The heightmap is a grayscale image which will be used to generate the heights of the mesh.")
+docreturns("A handle to the mesh created.")
+docparam("heightmap", "File of the image containing the heightmap.")
+
+func("void MeshFree(int mesh)")
+docdesc("Frees a mesh from memory.")
+docparam("mesh", "Handle of the mesh you want to free.")
+
+func("int MeshNode(int mesh, int parent, int col_info, int tangent_mesh)")
+docdesc("Creates a scene node from a mesh. When you load a mesh from disk, you simple store into memory the information about the shape of the mesh. If you want the mesh to be visible in the scene, you must create a scene node with this function. The advantage of this is that you can load the mesh once, and then create as much scene nodes as you need, and all of them will share the same mesh in memory.")
+docreturns("A handle to the node created.")
+docparam("mesh", "Handle of the mesh you want to instantiate.")
+docparam("parent", "Handle of another scene node, which will be the parent of the mesh node. When the parent moves or rotates, the node will move and rotate with it to always maintain the same relative position with it. If you don't want the node to have a parent, set this to '0'.")
+docparam("col_info", "Type of collision info to generate from the mesh. Check the collision info constants for valid values.")
+docparam("tangent_mesh", "If your scene node will use normal or parallax mapping, the mesh must have tangents on its vertices. Set this to '1' to generate them.")
+
+func("int MeshOctreeNode(int mesh, int parent, int col_info, int tangent_mesh)")
+docdesc("Creates a scene node from a mesh and optimizes it using a octree. When you load a mesh from disk, you simple store into memory the information about the shape of the mesh. If you want the mesh to be visible in the scene, you must create a scene node with this function. The advantage of this is that you can load the mesh once, and then create as much scene nodes as you need, and all of them will share the same mesh in memory. Optimizing through an octree allows the engine to occlude the parts of the mesh which are not visible at the moment, based on the octree visibility information. This function is better than MeshNode() when you are loading a map, as it is usually really big and you want some type of occlusion to optimize rendering speed.")
+docreturns("A handle to the node created.")
+docparam("mesh", "Handle of the mesh you want to instantiate.")
+docparam("parent", "Handle of another scene node, which will be the parent of the mesh node. When the parent moves or rotates, the node will move and rotate with it to always maintain the same relative position with it. If you don't want the node to have a parent, set this to '0'.")
+docparam("col_info", "Type of collision info to generate from the mesh. Check the collision info constants for valid values.")
+docparam("tangent_mesh", "If your scene node will use normal or parallax mapping, the mesh must have tangents on its vertices. Set this to '1' to generate them.")
+
+func("void MeshScale(int mesh, float sx, float sy, float sz)")
+docdesc("Scales a mesh.")
+
+func("void MeshFlip(int mesh)")
+docdesc("Inverts the mesh normals.")
+
+func("void MeshUpdateNormals(int mesh)")
+docdesc("Recalculates the normals of the mesh.")
+
+func("void MeshVerticesColor(int mesh, int color, int change_alpha)")
+docdesc("Chanes the color of all the vertices in the mesh at once. If change_alpha is '1', the alpha of the vertices is also changed. If it is '0', the alpha component of the color is ignored.")
+docparam("mesh", "Handle of the mesh you want to free.")
+
+func("void MeshPlanarMapping(int mesh, float resolution)")
+docdesc("Generates texture mapping values for the mesh.")
+
+func("float MeshWidth(int mesh)")
+docdesc("Returns the width of the specified mesh.")
+
+func("float MeshHeight(int mesh)")
+docdesc("Returns the height of the specified mesh.")
+
+func("float MeshDepth(int mesh)")
+docdesc("Returns the depth of the specified mesh.")
+
+-- Node
+docpage("Node")
+docdesc("A node is an element of the 3D scene. There are many types of nodes (cameras, meshes, lights, particles...), and apart from their specific functionality, they all share this set of functions.")
+
+constant("NT_EMPTY", "0");          docdesc("Node type. An empty node")
+constant("NT_BILLBOARD", "1");      docdesc("Node type. A billboard node.")
+constant("NT_BODY", "2");           docdesc("Node type. A rigid body node (unused yet).")
+constant("NT_CAMERA", "3");         docdesc("Node type. A camera node.")
+constant("NT_EMITTER", "4");        docdesc("Node type. A particles emitter node.")
+constant("NT_LIGHT", "5");          docdesc("Node type. A light node.")
+constant("NT_MESH", "6");           docdesc("Node type. A mesh node.")
+constant("NT_MESH_OCTREE", "7");    docdesc("Node type. An octree mesh node.")
+constant("NT_TERRAIN", "8");        docdesc("Node type. A terrain node.")
+constant("NT_WATER", "9");          docdesc("Node type. A water node (unused yet).")
+
+func("int NodeEmpty(int parent)")
+docdesc("Creates an empty scene node. This node does not render anything, but can be translated, rotated, etc, like any other type of node. It's main purpose is to be used as the parent of another node, or to reference a point in the 3D space.")
+docreturns("The handle of the created node.")
+docparam("parent", "Handle of another scene node, which will be the parent of this node. When the parent moves or rotates, the node will move and rotate with it to always maintain the same relative position with it. If you don't want the node to have a parent, set this to '0'.")
+
+func("void NodeFree(int node)")
+docdesc("Removes a node from the scene, and frees it from memory.")
+
+func("int NodeType(int node)")
+docdesc("Returns the type of a node.")
+
+func("void NodeSetName(int node, string name)")
+docdesc("Set the name of the node.")
+
+func("string NodeGetName(int node)")
+docdesc("Get the name of the node.")
+
+func("void NodePosition(int node, float x, float y, float z)")
+docdesc("Set the position of a scene node, relative to its parent.")
+
+func("void NodeMove(int node, float x, float y, float z)")
+docdesc("Moves a scene node, relative to its current position and orientation, through the 3D space.")
+
+func("void NodeRotate(int node, float pitch, float yaw, float roll)")
+docdesc("Rotates a scene node.")
+
+func("void NodeTurn(int node, float pitch, float yaw, float roll)")
+docdesc("Turns a node, depending on its previous rotation.")
+
+func("void NodeScale(int node, float x, float y, float z)")
+docdesc("Scales a node. '1.0' will leave the node on its current size, '2.0' will double it, etc.")
+
+func("float NodeX(int node, int absolute)")
+docdesc("Returns the x coordinate of the node, relative to its parent. If absolute is '1', the coordinate is relative to the world instead of the parent.")
+
+func("float NodeY(int node, int absolute)")
+docdesc("Returns the y coordinate of the node, relative to its parent. If absolute is '1', the coordinate is relative to the world instead of the parent.")
+
+func("float NodeZ(int node, int absolute)")
+docdesc("Returns the z coordinate of the node, relative to its parent. If absolute is '1', the coordinate is relative to the world instead of the parent.")
+
+func("float NodePitch(int node)")
+docdesc("Returns the pitch of the node.")
+
+func("float NodeYaw(int node)")
+docdesc("Returns the yaw of the node.")
+
+func("float NodeRoll(int node)")
+docdesc("Returns the roll of the node.")
+
+func("float NodeScaleX(int node)")
+docdesc("Returns the x scale value of the specified node.")
+
+func("float NodeScaleY(int node)")
+docdesc("Returns the y scale value of the specified node.")
+
+func("float NodeScaleZ(int node)")
+docdesc("Returns the z scale value of the specified node.")
+
+func("float NodeWidth(int node)")
+docdesc("Returns the width of the specified node.")
+
+func("float NodeHeight(int node)")
+docdesc("Returns the height of the specified node.")
+
+func("float NodeDepth(int node)")
+docdesc("Returns the depth of the specified node.")
+
+func("void NodeCastShadow(int node, int cast)")
+docdesc("Enables or disables shadow casting for this node. This function requires the stencil buffer enabled in the device.")
+
+func("void NodeHide(int node, int state)")
+docdesc("If you set state to '1', hides the node. If you set it to '0', shows it.")
+
+func("int NodeMaterials(int node)")
+docdesc("Returns the number of materials in the current node.")
+
+func("int NodeGetMaterial(int node, int mat_index)")
+docdesc("Returns a copy of the specified material in the node. As it is a copy, you can free it whenever you want.")
+
+func("void NodeSetMaterial(int node, int mat, int mat_index)")
+docdesc("Set the specified material in the node. To set all the materials in the node at once, set number as '0'.")
+
+func("void csNodeSetMaterialData(int n, int data, int mat_index)")
+docdesc("Set the specified material in the node based on the material definition of a MaterialData structure. To set all the materials in the node at once, set number as '0'.")
+
+func("void NodeSetMaterialFast(int node, int index, int type, int flags, int tex1, int tex2)")
+docdesc("This function allows to set one or all the materials in a node to these values, without having to create a material. It is designed mainly for testing purposes. To set all the materials in a node at once, set 'index' to '0'. Check the material functions to get the valid material type and flags values.")
+
+func("void NodeSetMaterialFlag(int node, int index, int flag, int state)")
+docdesc("This function enables or disables a flag in one or all the materials in a node, without affecting the rest of the material properties. For example, you can use this to quickly enable fog or fullbrightness in a lightmapped level mesh. To set all the materials in a node at once, set 'index' to '0'.")
+
+func("void NodeSetPickGroup(int n, int group)")
+docdesc("Set the picking group for this node. This can be any positive value. Nodes which belong to the group '0' cannot be picked.")
+
+func("void NodeSetProperty(int node, string name, string value)")
+docdesc("Set the name and value of a property in the specified node. A node can have as many properties as you want, and their use is undefined. You can store any data you need inside a property, and read them later.")
+
+func("int NodeProperties(int node)")
+docdesc("Returns the number of properties in a node.")
+
+func("int NodeFindProperty(int node, string name)")
+docdesc("Return the index of the property with the specified name.")
+
+func("string NodePropertyName(int node, int index)")
+docdesc("Get the name of the property at the specified index position.")
+
+func("string NodePropertyValue(int node, int index)")
+docdesc("Get the value of the property at the specified index position.")
+
+func("void NodeRemoveProperty(int node, int index)")
+docdesc("Removes the specified property.")
+
+func("void NodeSetParent(int node, int parent)")
+docdesc("Set the parent of the node. Set it to '0' if you don't want the node to have any parent.")
+
+func("int NodeGetParent(int node)")
+docdesc("Returns the parent of the node, or '0' if it has no parent.")
+
+func("int NodeChildren(int node)")
+docdesc("Returns the number of children of the node.")
+
+func("int NodeChild(int node, int index)")
+docdesc("Returns the specified node child, in the range 1 ... NodeChildren(node).")
+
+func("int NodeFindChild(int node, string name, int recursive)")
+docdesc("Finds a child with the specified name. If recursive is '1', it will recursively search on child nodes also.")
+
+func("void NodeSpeed(int node, float fps)")
+docdesc("Set the frames per second at which the node's animation will be played.")
+
+func("void NodeLoop(int node, int loop)")
+docdesc("Set loop to '1' if you want the animation to be looped, '0' otherwise.")
+
+func("void NodeSetFrame(int node, int start, int finish)")
+docdesc("Set the start and finish frames of the animation to be played. If finish is '0', the function is used to set the current animation frame.")
+
+func("int NodeGetFrame(int node)")
+docdesc("Returns the current animation frame of the node.")
+
+func("void NodeAttachToBone(int n, int n2, string bonename)")
+docdesc("Attaches n to the to bone in n2 with the specified name. n2 will become the parent of n1.")
+
+func("void NodeLookAt(int node, float x, float y, float z)")
+docdesc("Rotates node so it will look at the position specified by x, y, z.")
+
+-- Node physics
+docpage("Node Physics")
+
+constant("BT_NULL", "0");   --docdesc("Node type. An empty node")
+constant("BT_BOX", "1");
+constant("BT_SPHERE", "2");
+constant("CSBT_CONE", "3");
+constant("CSBT_CAPSULE", "4");
+constant("CSBT_CYLINDER", "5");
+
+func("void NodeSetBodyType(int node, int type)")
+func("void NodeEnablePhysics(int node, int use)")
+func("void NodeSetMass(int node, float mass)")
+
+-- Particle Data
+docpage("Particle Data")
+docdesc("These functions configure the settings of a set of particles. You can emit these particles using emitter nodes. A particle system is composed by three elements: particle data, which configure the settings of the particles to be emitted, particle emitters, which are used to locate the particles in the 3d space, and particle affectors, which configure the behaviour of the particles emitted.")
+
+constant("PT_POINT", "0")
+constant("PT_BOX", "1")
+
+func("int ParticleDataCreate(string name)")
+docdesc("Creates a new particle data object and returns its handle.")
+
+func("int ParticleDataLoad(string file)")
+docdesc("Loads particle data from the specified file. Particle data can be exported to a XML file, and you can create a new particle data object from this file using this function. The particle data object created will be returned.")
+
+func("void ParticleDataSave(int part_data, string file)")
+docdesc("Saves the particle_data settings to the specified XML file. The file extension for particles must be .par, in order for the engine editors to load particles property.")
+
+func("void ParticleDataFree(int part_data)")
+docdesc("Frees a particle data object from memory.")
+
+func("int ParticleDataFind(string name)")
+docdesc("Returns the particle_data with the specified name, if it exists. If it is not found, the funcion returns '0'.")
+
+func("void ParticleDataSetMaterial(int part_data, string mat_name)")
+docdesc("Sets the material name for this particle_data. When an emitter node is created from this data, id a material matching the specified name is found, it will be applied automatically to the particles.")
+
+func("void ParticleDataSetType(int part_data, int type)")
+docdesc("Set the type of the particle data. Possible values are PT_POINT and PT_BOX.")
+
+func("void ParticleDataSetBox(int part_data, float width, float height, float depth)")
+docdesc("Set the box size of the particles (only used when it is a box particle data).")
+
+func("void ParticleDataSetDirection(int part_data, float x, float y, float z)")
+docdesc("Set the direction of the particles.")
+
+func("void ParticleDataSetRate(int part_data, int min, int max)")
+docdesc("Set the range of minimum and maximum particles per second that may be emitted.")
+
+func("void ParticleDataSetColor(int part_data, int min, int max)")
+docdesc("Set the range of minimum and maximum colors that the particles will have when emitted. This color can be changed during particles lifetime by adding a fade out affector to the emitter node.")
+
+func("void ParticleDataSetLifeTime(int part_data, int min, int max)")
+docdesc("Set the range of minimum and maximum milliseconds that a particle may last.")
+
+func("void ParticleDataSetMaxAngle(int part_data, int angle)")
+docdesc("Set the maximum angle at which a particle can be emitted.")
+
+func("void ParticleDataSetSize(int part_data, float width, float height)")
+docdesc("Set the size of the particles emitted.")
+
+func("void ParticleDataAddFadeOutAffector(int part_data, int color, int time)")
+docdesc("Adds an affector to the particle data. Affectors modify the behaviour of the particles emitted in realtime. Although the usual way to add affectors is to add on an emitter basis, you can add an affector to the particle data, so the affector will be added to each emitter created using this data.")
+
+func("void ParticleDataAddGravityAffector(int part_data, float grav_x, float grav_y, float grav_z, int time)")
+docdesc("Adds an affector to the particle data. Affectors modify the behaviour of the particles emitted in realtime. Although the usual way to add affectors is to add on an emitter basis, you can add an affector to the particle data, so the affector will be added to each emitter created using this data.")
+
+func("string ParticleDataGetName(int part)")
+docdesc("Returns the name of the particle data.")
+
+func("string ParticleDataGetMaterial(int part)")
+docdesc("Returns the name of the material of the particle data.")
+
+func("int ParticleDataGetType(int part)")
+docdesc("Returns the type of the particle data.")
+
+func("float ParticleDataGetBoxWidth(int part)")
+docdesc("Returns the width of the emitting box of this particle data.")
+
+func("float ParticleDataGetBoxHeight(int part)")
+docdesc("Returns the height of the emitting box of this particle data.")
+
+func("float ParticleDataGetBoxDepth(int part)")
+docdesc("Returns the depth of the emitting box of this particle data.")
+
+func("float ParticleDataGetDirectionX(int part)")
+docdesc("Returns the X direction of this particle data.")
+
+func("float ParticleDataGetDirectionY(int part)")
+docdesc("Returns the Y direction of this particle data.")
+
+func("float ParticleDataGetDirectionZ(int part)")
+docdesc("Returns the Z direction of this particle data.")
+
+func("int ParticleDataGetMinRate(int part)")
+docdesc("Returns the min emitting rate of this particle data.")
+
+func("int ParticleDataGetMaxRate(int part)")
+docdesc("Returns the max emitting rate of this particle data.")
+
+func("int ParticleDataGetMinColor(int part)")
+docdesc("Returns the min color of the particle data.")
+
+func("int ParticleDataGetMaxColor(int part)")
+docdesc("Returns the max color of the particle data.")
+
+func("int ParticleDataGetMinLifeTime(int part)")
+docdesc("Returns the min lifetime of the particle data, in milliseconds.")
+
+func("int ParticleDataGetMaxLifeTime(int part)")
+docdesc("Returns the max lifetime of this particle data, in milliseconds.")
+
+func("int ParticleDataGetMaxAngle(int part)")
+docdesc("Returns the max angle of this particle data.")
+
+func("float ParticleDataGetWidth(int part)")
+docdesc("Returns the width of this particle data.")
+
+func("float ParticleDataGetHeight(int part)")
+docdesc("Returns the height of this particle data.")
+
+func("int ParticleDataAffectors(int part)")
+docdesc("Returns the total number of affectors associated to this particle data.")
+
+func("int ParticleDataGetAffectorType(int part, int index)")
+docdesc("Returns the type of the specified affector. It can be '0' for a fade-out affector, or '1' for a gravity affector.")
+
+func("int ParticleDataGetAffectorColor(int part, int index)")
+docdesc("Returns the color of the specified affector.")
+
+func("int ParticleDataGetAffectorTime(int part, int index)")
+docdesc("Returns the time taken to produce the specified affector.")
+
+func("float ParticleDataGetAffectorGravityX(int part, int index)")
+docdesc("Returns the X gravity of the specified affector.")
+
+func("float ParticleDataGetAffectorGravityY(int part, int index)")
+docdesc("Returns the Y gravity of the specified affector.")
+
+func("float ParticleDataGetAffectorGravityZ(int part, int index)")
+docdesc("Returns the Z gravity of the specified affector.")
+
+-- Scene
+docpage("Scene")
+docdesc("The scene represent the 3D space in which all your three-dimensional graphics are drawn.")
+
+constant("TS_VIEW", "0");       docdesc("Scene matrix. Represents the current view matrix.")
+constant("TS_WORLD", "1");      docdesc("Scene matrix. Represents the current world matrix.")
+constant("TS_PROJECTION", "2"); docdesc("Scene matrix. Represents the current projection matrix.")
+
+func("void SceneBegin()")
+docdesc("Prepares the scene for drawing. All the drawing operations (both 2D and 3D) must happen between SceneBegin() and SceneEnd().")
+
+func("void SceneEnd()")
+docdesc("Finishes rendering a scene, and draws the results on screen.")
+
+func("void SceneUpdate(float timestep)")
+docdesc("Updates the scene. This will update the physics simulation in the scene. The timestep value is a floating point value containing the elapsed seconds since the last update. You will usually call this function every frame, so the elapsed time will be the time passed since last frame. If you are using the Project Wizard template as a starting point for your application, the parameter passed to the EV_FRAME event will give you the elapsed time.")
+
+func("void SceneRender(int camera)")
+docdesc("Renders the contents of the scene. This draws all the scene nodes created.")
+docparam("camera", "Sets the camera through which the scene will be seen. A camera is created with the function CameraNode().")
+
+func("void SceneAmbient(int color)")
+docdesc("Set the ambient color of the scene. This color defines how lit will appear all the geometry which is not affected by any lights.")
+
+func("void SceneShadow(int color)")
+docdesc("Set the color of the shadows.")
+
+func("void SceneFog(int color, float near, float far)")
+docdesc("Sets the color and the distance parameters of the fog. Have in mind that the scene nodes sensibility to fog is set through their MF_FOG material flag.")
+docparam("color", "Color of the fog.")
+docparam("near", "Distance at which fog starts.")
+docparam("far", "Distance at which fog becomes completely opaque.")
+
+func("void SceneSkybox(int top, int bottom, int left, int right, int front, int back)")
+docdesc("Set the skybox for the scene. The six parameters are the six textures which form the skybox. If you want to clear the current skybox, simply call this function passing '0' as the first parameter.")
+
+func("void SceneSkydome(int tex, float hres, float yres, float tex_percent, float sphere_percent)")
+docdesc("Set the skydome for the scene.")
+docparam("tex", "Texture to use in the skydome.")
+docparam("hres", "Number of vertices of a horizontal layer of the skydome.")
+docparam("vres", "Number of vertices of a vertical layer of the skydome.")
+docparam("tex_percent", "How much of the height of the texture is used. Should be between '0' and '1'.")
+docparam("sphere_percent", "How much of the sphere is drawn. Value should be between '0' and '2', where '1' is an exact half-sphere and '2' is a full sphere.")
+
+func("void SceneTransformation(int state, int matrix)")
+docdesc("Fills a matrix with the projection data of the specified transformation state. It can be TS_VIEW, TS_WORLD, or TS_PROJECTION.")
+
+func("void SceneSetGravity(float x, float y, float z)")
+docdesc("Set the gravity of the scene, used for the physics simulation.")
+
+-- Shader
+docpage("Shader")
+docdesc("The Professional version of ColdSteel supports hardware shaders, which allows to perform fast realtime pixel and vertex effects on the GPU. Both low-level (written in assembly language) and  high-level (written in HLSL for DirectX or GLSL for OpenGL) shaders are supported.")
+
+constant("PSF_11", "0")
+constant("PSF_12", "1")
+constant("PSF_13", "2")
+constant("PSF_14", "3")
+constant("PSF_20", "4")
+constant("PSF_2A", "5")
+constant("PSF_2B", "6")
+constant("PSF_30", "7")
+constant("VSF_11", "0")
+constant("VSF_20", "1")
+constant("VSF_2A", "2")
+constant("VSF_30", "3")
+
+func("int ShaderRegister(string pixel_shader, string pixel_entry, int pixel_format, string vertex_shader, string vertex_entry, int vertex_format, int base_mat)")
+docdesc("Creates a new high-level shader.")
+docreturns("The handle of the registered shader. This handle can then be used as a standard material type.")
+docparam("pixel_shader", "A string containing the source code of the pixel shader.")
+docparam("pixel_entry", "The name of the entry-point function for the pixel shader, for example \\\"ps_main\\\".")
+docparam("pixel_format", "The format to which you want to compile the pixel shader. Possible values are: PSF_11, PSF_12, PSF_13, PSF_14, PSF_20, PSF_2A, PSF_2B, PSF_30.")
+docparam("vertex_shader", "A string containing the source code of the vertex shader.")
+docparam("vertex_entry", "The name of the entry-point function for the vertex shader, for example \\\"vs_main\\\".")
+docparam("vertex_format", "The format to which you want to compile the vertex shader. Possible values are: VSF_11, VSF_20, VSF_2A, VSF_30.")
+docparam("base_mat", "The base material type of this shader.")
+
+func("int ShaderRegisterFile(string pixel_file, string pixel_entry, int pixel_format, string vertex_file, string vertex_entry, int vertex_format, int base_mat)")
+docdesc("Loads a new high-level shader from a file.")
+docreturns("The handle of the registered shader. This handle can then be used as a standard material type.")
+docparam("pixel_file", "The file containing the pixel shader.")
+docparam("pixel_entry", "The name of the entry-point function for the pixel shader, for example \\\"ps_main\\\".")
+docparam("pixel_format", "The format to which you want to compile the pixel shader. Possible values are: PSF_11, PSF_12, PSF_13, PSF_14, PSF_20, PSF_2A, PSF_2B, PSF_30.")
+docparam("vertex_file", "The file containing the vertex shader.")
+docparam("vertex_entry", "The name of the entry-point function for the vertex shader, for example \\\"vs_main\\\".")
+docparam("vertex_format", "The format to which you want to compile the vertex shader. Possible values are: VSF_11, VSF_20, VSF_2A, VSF_30.")
+docparam("base_mat", "The base material type of this shader.")
+
+func("int ShaderAsmRegister(string pixel_shader, string vertex_shader, int base_material)")
+docdesc("Creates a new low-level shader.")
+docreturns("The handle of the registered shader. This handle can then be used as a standard material type.")
+docparam("pixel_shader", "A string containing the source code of the pixel shader.")
+docparam("vertex_shader", "A string containing the source code of the vertex shader.")
+docparam("base_mat", "The base material type of this shader.")
+
+func("int ShaderAsmRegisterFile(string pixel_file, string vertex_file, int base_mat)")
+docdesc("Loads a new low-level shader from a file.")
+docreturns("The handle of the registered shader. This handle can then be used as a standard material type.")
+docparam("pixel_file", "The file containing the pixel shader.")
+docparam("vertex_file", "The file containing the vertex shader.")
+docparam("base_mat", "The base material type of this shader.")
+
+func("void ShaderPixelConstant(int shader, string name, int start_register, int data, int count)")
+docdesc("Sets the value of a pixel constant in the shader. You usually use this to send data to the shader each frame. Some shaders may need, for example, information about the camera position to render properly.")
+docparam("shader", "Handle of the shader.")
+docparam("name", "Name of the constant you want to set. This is used in hight-level shaders. For low-level shaders, set it to \\\"\\\".")
+docparam("start_register", "First register that you want to set in the shader. Each register contains 4 floats. This is used in low-level shaders. For high-level shaders, set it to '0'.")
+docparam("data", "Pointer to the data you want to set. It usually is a vector or a matrix.")
+docparam("count", "Number of floats you are sending, or in the case of a low-level shader, number of registers you want to fill.")
+func("void ShaderVertexConstant(int shader, string name, int start_register, int data, int count)")
+docdesc("Sets the value of a vertex constant in the shader. You usually use this to send data to the shader each frame. Some shaders may need, for example, information about the camera position to render properly.")
+docparam("shader", "Handle of the shader.")
+docparam("name", "Name of the constant you want to set. This is used in high-level shaders. For low-level shaders, set it to \\\"\\\".")
+docparam("start_register", "First register that you want to set in the shader. Each register contains 4 floats. This is used in low-level shaders. For high-level shaders, set it to '0'.")
+docparam("data", "Pointer to the data you want to set. It usually is a vector or a matrix.")
+docparam("count", "Number of floats you are sending, or in the case of a low-level shader, number of registers you want to fill.")
+
+-- String
+docpage("String")
+docdesc("Although many programming languages already come with a nice set of functions to manage strings, ColdSteel includes a generic set to use with any programming language.")
+
+func("int StringToInt(string str)")
+docdesc("Returns the specified string as an integer value. The string must contain a number to be converted. Strings which do not start by a number, will be returned as '0'.")
+
+func("float StringToFloat(string str)")
+docdesc("Returns the specified string as an floating point number. The string must contain a number to be converted. Strings which do not start by a number, will be returned as '0.0'.")
+
+func("string StringFromInt(int number)")
+docdesc("Returns a string containing the specified integer value.")
+
+func("string StringFromFloat(float number)")
+docdesc("Returns a string containing the specified float point value.")
+
+func("string StringLeft(string str, int number)")
+docdesc("Returns the number leftmost characters of the specified string.")
+
+func("string StringRight(string str, int num)")
+docdesc("Returns the number rightmost characters from the specified string.")
+
+func("string StringMid(string str, int pos, int num)")
+docdesc("Returns num characters from the string, starting form index pos (must be bigger than 0).")
+
+func("string StringReplace(string str, string find, string replace)")
+docdesc("Replaces any occurances of find found in the string with replace.")
+
+func("int StringFind(string str, string find, int offset)")
+docdesc("Returns the index of the first occurance of find inside the string, starting the search at position offset.")
+
+func("string StringUpper(string str)")
+docdesc("Returns the specified string converted to uppercase.")
+
+func("string StringLower(string str)")
+docdesc("Returns the specified string converter to lowercase.")
+
+func("string StringTrim(string str)")
+docdesc("Returns a string without leading nor trailing spaces.")
+
+func("string StringChar(int ascii)")
+docdesc("Returns the character representation of the specified string.")
+
+func("int StringAscii(string str)")
+docdesc("Returns the ascii value of the specified character.")
+
+func("int StringLen(string str)")
+docdesc("Returns the length in characters of the specified string.")
+
+func("string StringField(string str, string delimiter, int index)")
+docdesc("Returns the index element in the string using delimiter as separator between elements. For example, StringField(\\\"Hello from ColdSteel\\\", \\\" \\\", 3) would return \\\"ColdSteel\\\".")
+
+-- Terrain
+docpage("Terrain")
+docdesc("Apart from the static mesh terrains you can create, ColdSteel Pro also supports dynamic terrain rendering, which uses the Level-Of-Detail system to increase or decrease the quality of each part of the terrain, based on its distance to the camera.")
+
+func("int TerrainNode(string heightmap, int parent, float width, float height, float depth, int col_info)")
+docdesc("Creates a new terrain node based on a greyscale heightmap image.")
+docreturns("The handle of the created terrain.")
+docparam("heightmap", "Image file containing a grayscale imaghe which will be used to generate the terrain heights.")
+docparam("parent", "Handle of another scene node, which will be the parent of this terrain. When the parent moves or rotates, the terrain will move and rotate with it to always maintain the same relative position with it. If you don't want the terrain to have a parent, set this to '0'.")
+docparam("width, height, depth", "Size of the terrain.")
+docparam("col_info", "Set to '1' to generate collision info, or '0' otherwise.")
+
+func("void TerrainScaleTexture(int terrain, float scale1, float scale2)")
+docdesc("Scales the texture coordinates of the terrain, so the texture can appear tiled when mapped onto it.")
+docparam("terrain", "Handle of the terrain you want to modify.")
+docparam("scale1", "Scale value for the first texture layer. To leave the texture coordinates untouched, set it to '1.0'.")
+docparam("scale2", "Scale value for the second texture layer. To use the same coordinate as in the first layer, set it to '0.0'. If you are using a detail map on the terrain, you'll want to give a high value to this paramameter, so the detail texture will appear tiled all over the terrain surface.")
+
+-- Texture
+docpage("Texture")
+docdesc("A texture is an image which can be used in combination with other elements to define how the elements of a 3D scene look. You can load a texture with a wood, grass, or metal image from disk, and apply it to a scene node to give the appropiate look.")
+
+func("int TextureCreate(int width, int height)")
+docdesc("Creates a blank texture with the specified width and height. You can write pixels onto this texture.")
+
+func("int TextureTargetCreate(int width, int height)")
+docdesc("Creates a blank texture with the specified width and height, that can be used as a render target for a camera.")
+
+func("int TextureLoad(string file, int mipmaps)")
+docdesc("Loads a texture from disk.")
+docreturns("A handle to the texture loaded.")
+docparam("file", "File of the texture. The file must be an image in one of the following formats: BMP, PNG, JPG, PCX, PSD.")
+docparam("mipmaps", "Generate mipmaps for the texture. Disabling mipmaps looks better for textures you will use in a skybox, or for masked textures (when you apply them to a material using the MT_MASKED mode).")
+
+func("void TextureFree(int tex)")
+docdesc("Frees a previously loaded texture.")
+docparam("texture", "Handle of the texture, as returned by TextureLoad().")
+
+func("string TextureFile(int tex)")
+docdesc("Returns the filename of the specified texture.")
+
+func("int TextureWidth(int tex, int original)")
+docdesc("Returns the width of a texture.")
+docparam("texture", "Handle of the texture.")
+docparam("original", "Textures which are not power of two in size (2, 4, 8, 16, 32, 64, 128, 256...) are scaled when loaded. If you set this parameter to 1, it will give you the original width of the texture.")
+
+func("int TextureHeight(int tex, int original)")
+docdesc("Returns the height of a texture.")
+docparam("texture", "Handle of the texture.")
+docparam("original", "Textures which are not power of two in size (2, 4, 8, 16, 32, 64, 128, 256...) are scaled when loaded. If you set this parameter to 1, it will give you the original height of the texture.")
+
+func("int TextureLock(int tex)")
+docdesc("Locks a texture for direct reading and writing onto it.")
+docreturns("A pointer to the texture pixels buffer. You can directly write bytes into this buffer to modify the texture.")
+docparam("texture", "Handle of the texture.")
+
+func("void TextureUnlock(int tex)")
+docdesc("Unlocks a previously locked texture, after you have finished reading or writing data from it. You must unlock it before rendering this texture again.")
+docparam("texture", "Handle of the texture.")
+
+func("void TextureColorKey(int tex, int color)")
+docdesc("Defines the transparent color of a texture.")
+docparam("texture", "Handle of the texture.")
+docparam("color", "Color of the texture that will be considered transparent.")
+
+func("void TextureNormalize(int tex, float amplitude)")
+docdesc("Converts a texture into a normal map, which you can use with normal and parallax mapping.")
+docparam("texture", "Handle of the texture.")
+docparam("amplitude", "Value by which the height information is multiplied.")
+
+func("int TextureHWPointer(int tex)")
+docdesc("Returns the internal hardware pointer to the texture.")
+
+-- Vector
+docpage("Vector")
+docdesc("A vector is a special type of data which can hold a coordinate in the 3D space. A vector is represented by a set of X, Y, Z components which, for example, may contian information about the position, rotation, or scale of a node.")
+
+func("int VectorCreate()")
+docdesc("Creates a new vector and returns its handle.")
+
+func("void VectorFree(int vector)")
+docdesc("Frees a previously created vector.")
+
+func("void VectorAdd(int vector, int vector2)")
+docdesc("Adds vector2 to vector.")
+
+func("void VectorAddScale(int vector, int vector2, float scale)")
+docdesc("Adds vector2 to vector, scaling it by the given value. Vector2 remains unmodified.")
+
+func("int VectorBetween(int vector, float x0, float y0, float z0, float x1, float y1, float z1)")
+docdesc("If the vector is inside the ray defined by the coordinates, returns '1'. Otherwise returns '0'.")
+
+func("void VectorCopy(int vector, int other_vector)")
+docdesc("Copies vector2 inside vector.")
+
+func("void VectorCrossProduct(int vector, int vector2)")
+docdesc("Performs a cross product operation between vector and vector2. The results are stored in vector.")
+
+func("float VectorDotProduct(int vector, int other_vector)")
+docdesc("Performs a dot product operation between vector and vector2, and returns the result.")
+
+func("int VectorEqual(int vector, int other_vector, float epsilon)")
+docdesc("Returns '1' if the two vectors represent the same coordinates, or '0' otherwise. Epsilon is the tolerance value, this is, how close the values must be to be considered equal.")
+
+func("float VectorDistance(int vector, float x, float y, float z)")
+docdesc("Returns the distance between vector and the specified coordinates.")
+
+func("float VectorDistanceSquared(int vector, float x, float y, float z)")
+docdesc("Returns the squared distance between vector and the specified coordinates.")
+
+func("void VectorDiv(int vector, int vector2)")
+docdesc("Divides vector by vector2.")
+
+func("void VectorInterpolate(int vector, int vector2, float d)")
+docdesc("Interpolates vector and vector2, and stores the resulting vector in vector. The value of d must be between 0.0 and 1.0.")
+
+func("void VectorInvert(int vector)")
+docdesc("Inverts vector.")
+
+func("float VectorLength(int vector)")
+docdesc("Returns the length of the specified vector.")
+
+func("float VectorLengthSquared(int vector)")
+docdesc("Returns the squared length of the specified vector.")
+
+func("void VectorMul(int vector, int vector2)")
+docdesc("Multiplies vector by vector2.")
+
+func("void VectorNormalize(int vector)")
+docdesc("Normalizes the specified vector.")
+
+func("void VectorScale(int vector, float scale)")
+docdesc("Scales vector by the given value.")
+
+func("void VectorSet(int vector, float x, float y, float z)")
+docdesc("Set the values of the specified vector.")
+
+func("void VectorSub(int vector, int vector2)")
+docdesc("Substracts vector2 from vector.")
+
+func("float VectorX(int vector)")
+docdesc("Returns the X component of vector.")
+
+func("float VectorY(int vector)")
+docdesc("Returns the Y component of vector.")
+
+func("float VectorZ(int vector)")
+docdesc("Returns the Z component of vector.")
+
+-- XML Parser
+docpage("XML Parser")
+docdesc("A set of functions for parsing and writing XML files is also included, really appropiate for configuration files or simple scripts.")
+
+constant("XML_NONE", "0");          docdesc("XML node type. No XML node, usually returned when you don't have read a node yet.")
+constant("XML_ELEMENT", "1");       docdesc("XML node type. An element, like '<foo>'.")
+constant("XML_ELEMENTEND", "2");    docdesc("XML node type. The end of an element, like '</foo>'.")
+constant("XML_TEXT", "3");          docdesc("XML node type. Text within an element, for example '<foo>This is the text</foo>'.")
+constant("XML_COMMENT", "4");       docdesc("XML node type. A comment in the form '<!-- This is the comment -->', or a DTD definition.")
+constant("XML_UNKNOWN", "5");       docdesc("XML node type. An unrecognized type of node.")
+
+func("int XMLRead(string file)")
+docdesc("Opens an XML file for reading and returns its handle, or '0' if the file could not be opened.")
+
+func("int XMLWrite(string file)")
+docdesc("Opens an XML file for writing and returns its handle, or '0' if the file could not be created.")
+
+func("void XMLClose(int xml)")
+docdesc("Closes an xml file previously opened with XMLRead() or XMLWrite().")
+
+func("int XMLReadNode(int xml)")
+docdesc("Reads the next node in the xml. If there are no more nodes, returns '0'.")
+
+func("int XMLNodeType(int xml)")
+docdesc("Returns the type of the current node in the xml file. Check the constants section for valid values.")
+
+func("string XMLNodeName(int xml)")
+docdesc("Returns the name of the current node, only valid if its type is XML_ELEMENT.")
+
+func("string XMLNodeData(int xml)")
+docdesc("Returns the string data of the current node, only valid if its type is XML_TEXT, or a XML_UNKNOWN node with some data on it.")
+
+func("int XMLAttributeCount(int xml)")
+docdesc("Returns the number of attributes in the current XML_ELEMENT node.")
+
+func("string XMLAttributeName(int xml, int index)")
+docdesc("Returns the name of the specified node attribute.")
+
+func("string XMLAttributeValue(int xml, int index)")
+docdesc("Returns the value of the specified node attribute.")
+
+func("void XMLWriteHeader(int xml)")
+docdesc("Writes the required header in an XML file. Always write this at the top of an XML file.")
+
+func("void XMLWriteElement(int xml, string name, string attributes, int empty)")
+docdesc("Writes a new element in the XML file. It does support a maximum of 5 attributes, which must be a list of name/value pairs separated by the symbol \\\"|\\\". Name and value must also be separated by \\\"|\\\". If empty is '1', the element will be closed. If not, you can add other nodes to it, and you must close it with XMLWriteClosingTag().")
+
+func("void XMLWriteClosingTag(int xml, string name)")
+docdesc("Closes an element which you created previously with XMLWriteElement(), and left open.")
+
+func("void XMLWriteText(int xml, string text)")
+docdesc("Writes a text inside the current element.")
+
+func("void XMLWriteLineBreak(int xml)")
+docdesc("Puts a line break inside the XML file, useful to make the file more readable and clean.")
+
+docendchapter() -- Modules
+
+docimport("Credits.htm")
+docimport("License.htm")

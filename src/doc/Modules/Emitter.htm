@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Emitter</span></big><br><br>
+This node emits particles. Particles are a special type of billboards. A particle system is composed by three elements: particle data, which configure the settings of the particles to be emitted, particle emitters, which are used to locate the particles in the 3d space, and particle affectors, which configure the behaviour of the particles emitted.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int EmitterNode(int particle_data, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new emitter node and starts emitting particles.<br>
+<br><big>Returns</big><br>The handle to the created emitter node.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">particle_data</span> - The handle of the particles data, which configures how the particles will be emitted by the emitter node.<br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of the emitter. When the parent moves or rotates, the emitter will move and rotate with it to always maintain the same relative position with the parent. If you don't want the emitter to have a parent, set this to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EmitterAddFadeOutAffector(int emitter, int color, int time)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds a fade-out affector to the particles emitted. Particles will fade out to the specified color in the milliseconds specified by time.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EmitterAddGravityAffector(int emitter, float grav_x, float grav_y, float grav_z, int time)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds a gravity affector to the particles emitted.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EmitterRemoveAffectors(int emitter)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Removes all the affectors attached to an emitter node.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

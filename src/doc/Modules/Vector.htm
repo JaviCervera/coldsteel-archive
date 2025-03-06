@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Vector</span></big><br><br>
+A vector is a special type of data which can hold a coordinate in the 3D space. A vector is represented by a set of X, Y, Z components which, for example, may contian information about the position, rotation, or scale of a node.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int VectorCreate()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new vector and returns its handle.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorFree(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a previously created vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorAdd(int vector, int vector2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds vector2 to vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorAddScale(int vector, int vector2, float scale)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds vector2 to vector, scaling it by the given value. Vector2 remains unmodified.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int VectorBetween(int vector, float x0, float y0, float z0, float x1, float y1, float z1)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>If the vector is inside the ray defined by the coordinates, returns '1'. Otherwise returns '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorCopy(int vector, int other_vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Copies vector2 inside vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorCrossProduct(int vector, int vector2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Performs a cross product operation between vector and vector2. The results are stored in vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorDotProduct(int vector, int other_vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Performs a dot product operation between vector and vector2, and returns the result.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int VectorEqual(int vector, int other_vector, float epsilon)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the two vectors represent the same coordinates, or '0' otherwise. Epsilon is the tolerance value, this is, how close the values must be to be considered equal.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorDistance(int vector, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the distance between vector and the specified coordinates.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorDistanceSquared(int vector, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the squared distance between vector and the specified coordinates.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorDiv(int vector, int vector2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Divides vector by vector2.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorInterpolate(int vector, int vector2, float d)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Interpolates vector and vector2, and stores the resulting vector in vector. The value of d must be between 0.0 and 1.0.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorInvert(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Inverts vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorLength(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the length of the specified vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorLengthSquared(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the squared length of the specified vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorMul(int vector, int vector2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Multiplies vector by vector2.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorNormalize(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Normalizes the specified vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorScale(int vector, float scale)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Scales vector by the given value.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorSet(int vector, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the values of the specified vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void VectorSub(int vector, int vector2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Substracts vector2 from vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorX(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the X component of vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorY(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Y component of vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float VectorZ(int vector)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Z component of vector.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

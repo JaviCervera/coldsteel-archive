@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">String</span></big><br><br>
+Although many programming languages already come with a nice set of functions to manage strings, ColdSteel includes a generic set to use with any programming language.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int StringToInt(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified string as an integer value. The string must contain a number to be converted. Strings which do not start by a number, will be returned as '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float StringToFloat(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified string as an floating point number. The string must contain a number to be converted. Strings which do not start by a number, will be returned as '0.0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringFromInt(int number)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns a string containing the specified integer value.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringFromFloat(float number)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns a string containing the specified float point value.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringLeft(string str, int number)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number leftmost characters of the specified string.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringRight(string str, int num)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number rightmost characters from the specified string.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringMid(string str, int pos, int num)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns num characters from the string, starting form index pos (must be bigger than 0).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringReplace(string str, string find, string replace)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Replaces any occurances of find found in the string with replace.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int StringFind(string str, string find, int offset)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the index of the first occurance of find inside the string, starting the search at position offset.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringUpper(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified string converted to uppercase.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringLower(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified string converter to lowercase.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringTrim(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns a string without leading nor trailing spaces.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringChar(int ascii)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the character representation of the specified string.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int StringAscii(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the ascii value of the specified character.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int StringLen(string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the length in characters of the specified string.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string StringField(string str, string delimiter, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the index element in the string using delimiter as separator between elements. For example, StringField("Hello from ColdSteel", " ", 3) would return "ColdSteel".<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

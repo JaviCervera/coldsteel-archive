@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Display</span></big><br><br>
+The display is the screen or window in which everything is drawn. You can create a fullscreen display, a windowed one, or even start a display in an already existing window.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">DFE_RENDERTOTEXTURE</span> - Render to texture support (render to texture will be included in a future update).<br>
+<span style="font-weight: bold;">DFE_BILINEARFILTER</span> - Display feature. Bilinear filtering of textures support.<br>
+<span style="font-weight: bold;">DFE_HARDWARETNL</span> - Display feature. Hardware Transform and Lighting support.<br>
+<span style="font-weight: bold;">DFE_MIPMAP</span> - Display feature. Texture mip-mapping support.<br>
+<span style="font-weight: bold;">DFE_STENCILBUFFER</span> - Display feature. Does this display have the stencil buffer enabled?<br>
+<span style="font-weight: bold;">DFE_VERTEXSHADER11</span> - Display feature. Vertex shader 1.1 support.<br>
+<span style="font-weight: bold;">DFE_VERTEXSHADER20</span> - Display feature. Vertex shader 2.0 support.<br>
+<span style="font-weight: bold;">DFE_VERTEXSHADER30</span> - Display feature. Vertex shader 3.0 support.<br>
+<span style="font-weight: bold;">DFE_PIXELSHADER11</span> - Display feature. Pixel shader 1.1 support.<br>
+<span style="font-weight: bold;">DFE_PIXELSHADER12</span> - Display feature. Pixel shader 1.2 support.<br>
+<span style="font-weight: bold;">DFE_PIXELSHADER13</span> - Display feature. Pixel shader 1.3 support.<br>
+<span style="font-weight: bold;">DFE_PIXELSHADER14</span> - Display feature. Pixel shader 1.4 support.<br>
+<span style="font-weight: bold;">DFE_PIXELSHADER20</span> - Display feature. Pixel shader 2.0 support.<br>
+<span style="font-weight: bold;">DFE_PIXELSHADER30</span> - Display feature. Pixel shader 3.0 support.<br>
+<span style="font-weight: bold;">DFE_ARB_VERTEXPROGRAM1</span> - Display feature. ARB vertex program 1.0 support.<br>
+<span style="font-weight: bold;">DFE_ARB_FRAGMENTPROGRAM1</span> - Display feature. ARB fragment program 1.0 support.<br>
+<span style="font-weight: bold;">DF_FULLSCREEN</span> - Display flag. The display will be started in fullscreen mode instead of in a window<br>
+<span style="font-weight: bold;">DF_VSYNC</span> - Display flag. Screen refresh will be vertically synced. This is used to prevent from 'tearing' images, but limits the framerate to the vertical sync rate of the monitor.<br>
+<span style="font-weight: bold;">DF_ANTIALIAS</span> - Display flag. Enables fullscreen antialiasing.<br>
+<span style="font-weight: bold;">DF_OPENGL</span> - Display flag. The display will use OpenGL instead of Direct3D9.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void DisplayOpen(int width, int height, int depth, int flags, int win)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Opens the ColdSteel display with the specified parameters.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">width, height</span> - Dimensions of the display screen or window.<br>
+<span style="font-weight: bold;">depth</span> - Colour depth (in bits, 16, 24 or 32).<br>
+<span style="font-weight: bold;">flags</span> - Display flags. Can be a combination of DF_FULLSCREEN, DF_VSYNC, DF_ANTIALIAS, and DF_OPENGL.<br>
+<span style="font-weight: bold;">win</span> - Handle to an existing window (this is, a HWND in the Win32 API), or 0 to create a new one. This is useful when you are using the engine as a .dll (SDK version only), and you want to create and handle the application window, instead of letting ColdSteel do it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DisplayClose()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Closes the ColdSteel display. Nothing may be rendered after doing this.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DisplayCaption(string caption)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the title of the ColdSteel window.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">caption</span> - Title to be shown in the window title bar.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DisplayClosed()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Tells if the display has been closed or not.<br>
+<br><big>Returns</big><br>A value of '1' when the display does not exist, or '0' if it does.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DisplayWidth()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of the ColdSteel display.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DisplayHeight()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of the ColdSteel display.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DisplayFps()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the frames per second at which ColdSteel is currently running.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DisplayFeature(int feature)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Tells if the specified feature is supported by the display.<br>
+<br><big>Returns</big><br>Returns '1' if the feature is supported, '0' otherwise.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">feature</span> - The feature you want to check. It can be one of the display feature constants explained above in this page.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DisplayResize(int width, int height)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>If you are rendering on a custom window, and it has been resized, you can call this function to resize the rendering area to match the new dimensions.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int DisplayActive()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Tells if the engine window is the currently active one.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DisplayScreenshot(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Takes a screenshot and saves it as a bitmap.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

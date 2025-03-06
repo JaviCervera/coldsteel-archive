@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Gui</span></big><br><br>
+ColdSteel comes with a builtin Gui system which can be used to build the HUD interface of your games as well as making editors.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">GF_OK</span> - <br>
+<span style="font-weight: bold;">GF_CANCEL</span> - <br>
+<span style="font-weight: bold;">GF_YES</span> - <br>
+<span style="font-weight: bold;">GF_NO</span> - <br>
+<span style="font-weight: bold;">GF_BORDER</span> - <br>
+<span style="font-weight: bold;">GF_FILBACK</span> - <br>
+<span style="font-weight: bold;">GF_WORDWRAP</span> - <br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int GuiButton(int x, int y, int w, int h, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a button gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiCheckBox(int x, int y, int w, int h, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a checkbox gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiComboBox(int x, int y, int w, int h, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a combobox gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiContextMenu(int x, int y, int w, int h, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a context menu gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiEditBox(int x, int y, int w, int h, int parent, int maxchars, int border)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create an editbox gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">maxchars</span> - Maximum number of character you can input in the box.<br>
+<span style="font-weight: bold;">border</span> - '1' to make an editbox with border, '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiGroup(int x, int y, int w, int h, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a group gadget and returns its handle. This gadget is simply used to group other gadgets.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiListBox(int x, int y, int w, int h, int parent, int draw_background)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a listbox gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">draw_background</span> - '1' to make a listbox with background, '0' to make the background transparent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiMenu(int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a menu gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiMessageBox(int parent, string caption, string text, int flags)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a messagebox gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">caption</span> - Caption of the messagebox window.<br>
+<span style="font-weight: bold;">text</span> - Text that the messagebox will display.<br>
+<span style="font-weight: bold;">flags</span> - A combination of the following values: GF_OK, GF_CANCEL, GF_YES, GF_NO.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiScrollBar(int x, int y, int w, int h, int parent, int horizontal, int max, int step)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a scrollbar gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">horizontal</span> - '1' to make the scrollbar horizontal, '0' to make it vertical.<br>
+<span style="font-weight: bold;">max</span> - Maximum value that the scrollbar can reach<br>
+<span style="font-weight: bold;">step</span> - Minimum step in which the scrollbar can be increased.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiTabber(int x, int y, int w, int h, int parent, int flags)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a tabber gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">flags</span> - A combination of the following values: GF_BORDER (draw tabber with border), GF_FILLBACK (draw tabber with background.)<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiText(int x, int y, int w, int h, int parent, int flags)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a text gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">flags</span> - A combination of the following values: GF_BORDER (draw text with border), GF_FILLBACK (draw text with background), GF_WORDWRAP (wrap around words when reaching the right margin of the gadget).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiTexture(int x, int y, int parent, int tex, int use_alpha)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a texture gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">tex</span> - Texture to draw.<br>
+<span style="font-weight: bold;">use_alpha</span> - '1' to use the alpha channel of the texture, '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiToolbar(int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a toolbar gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GuiWindow(int x, int y, int w, int h, int parent, int modal)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Create a window gadget and returns its handle.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">x, y</span> - Initial position of the gadget relative to its parent gadget.<br>
+<span style="font-weight: bold;">w, h</span> - Initial size of the gadget.<br>
+<span style="font-weight: bold;">parent</span> - Handle of the parent gadget, or '0' to make a top-level gadget (for example, a window with no parent).<br>
+<span style="font-weight: bold;">modal</span> - '1' to lock the window until it is closed, '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GuiDraw()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Draws the gui to the display. This must be called between SceneBegin() and SceneEnd(), and usually after the call to SceneRender().<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

@@ -1,0 +1,44 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Contents file=doc.hhc
+Title=ColdSteel Engine Documentation
+
+
+[FILES]
+Welcome.htm
+Modules/Core.htm
+Modules/Audio.htm
+Modules/Billboard.htm
+Modules/Camera.htm
+Modules/Collision.htm
+Modules/Dir_Listing.htm
+Modules/Display.htm
+Modules/Drawing.htm
+Modules/Effect.htm
+Modules/Emitter.htm
+Modules/Event.htm
+Modules/File_System.htm
+Modules/Font.htm
+Modules/Gadget.htm
+Modules/Gui.htm
+Modules/Input.htm
+Modules/Joystick.htm
+Modules/Light.htm
+Modules/Material.htm
+Modules/Material_Data.htm
+Modules/Math.htm
+Modules/Matrix.htm
+Modules/Mesh.htm
+Modules/Node.htm
+Modules/Particle_Data.htm
+Modules/Scene.htm
+Modules/Shader.htm
+Modules/String.htm
+Modules/Terrain.htm
+Modules/Texture.htm
+Modules/Vector.htm
+Modules/XML_Parser.htm
+Credits.htm
+License.htm
+
+[INFOTYPES]

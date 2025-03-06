@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Gadget</span></big><br><br>
+A gadget is any type of element (a window, a button, a menu...) inside the user interface of your game. You can create any type of gadget using the functions in the 'Gui' module, and modify your gadgets later with these functions.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">GT_BUTTON</span> - <br>
+<span style="font-weight: bold;">GT_CHECKBOX</span> - <br>
+<span style="font-weight: bold;">GT_COMBOBOX</span> - <br>
+<span style="font-weight: bold;">GT_EDITBOX</span> - <br>
+<span style="font-weight: bold;">GT_GROUP</span> - <br>
+<span style="font-weight: bold;">GT_LISTBOX</span> - <br>
+<span style="font-weight: bold;">GT_MENU</span> - <br>
+<span style="font-weight: bold;">GT_SCROLLBAR</span> - <br>
+<span style="font-weight: bold;">GT_TABBER</span> - <br>
+<span style="font-weight: bold;">GT_TEXT</span> - <br>
+<span style="font-weight: bold;">GT_TEXTURE</span> - <br>
+<span style="font-weight: bold;">GT_TOOLBAR</span> - <br>
+<span style="font-weight: bold;">GT_WINDOW</span> - <br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void GadgetFree(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a previously created gadget.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetType(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the type of the specified gadget. It will return a value from the list of gadget types listed above.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetEnable(int gadget, int state)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Enables or disables a gadget.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">state</span> - '1' to enable a gadget (the intial default state), '0' to disable it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string GadgetGetText(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the text of a gadget (the text of a button, or the title of a window, for example).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSetText(int gadget, string text)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the text of a gadget (the text of a button, or the title of a window, for example).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetShape(int gadget, int x, int y, int w, int h)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Change the position and size of a gadget.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetVisible(int gadget, int state)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the visible mode of a gadget.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">state</span> - '1' to make the gadget visible (the initial default state), '0' to make it invisible.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetChildren(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of children that the gadget has (for example, the number of gadgets contained in a window).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetChild(int gadget, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the handle of the children with the specified index.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetParent(int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the parent handle of the specified gadget.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSetImage(int gadget, int tex, int x, int y, int width, int height, int alpha)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set a texture image for the gadget. you can specify if you want to use the alpha channel in the texture or not.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSetFont(int gadget, int font)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>You can pass a font to use by the gadget, or set to '0' to use the skin default font.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSetColor(int gadget, int color, int override)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>You can set override to '1' and specify one color to use instead of the skin default color. Set override to '0' to use the skin color.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSetState(int gadget, int state)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the state of the gadget. In most gadgets, this value can either be '1' or '0', But on scrollbar gadgets this is used to set the current value of the scrollbar.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetGetState(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the state of the gadget.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetAddItem(int gadget, string text, int id)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds a new item to the gadget.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetGetItemId(int gadget, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string GadgetGetItemText(int gadget, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetSelectedItem(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSelectItem(int gadget, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GadgetCountItems(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetSetItemText(int gadget, int index, string text)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetEnableItem(int gadget, int index, int enable)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetRemoveItem(int gadget, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void GadgetRemoveItems(int gadget)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

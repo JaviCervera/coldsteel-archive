@@ -1,0 +1,296 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Input</span></big><br><br>
+The functions in this module are used to handle keyboard and mouse input events.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">MB_LEFT</span> - <br>
+<span style="font-weight: bold;">MB_RIGHT</span> - <br>
+<span style="font-weight: bold;">MB_MIDDLE</span> - <br>
+<span style="font-weight: bold;">KEY_LBUTTON</span> - <br>
+<span style="font-weight: bold;">KEY_RBUTTON</span> - <br>
+<span style="font-weight: bold;">KEY_CANCEL</span> - <br>
+<span style="font-weight: bold;">KEY_MBUTTON</span> - <br>
+<span style="font-weight: bold;">KEY_XBUTTON1</span> - <br>
+<span style="font-weight: bold;">KEY_XBUTTON2</span> - <br>
+<span style="font-weight: bold;">KEY_BACK</span> - <br>
+<span style="font-weight: bold;">KEY_TAB</span> - <br>
+<span style="font-weight: bold;">KEY_CLEAR</span> - <br>
+<span style="font-weight: bold;">KEY_RETURN</span> - <br>
+<span style="font-weight: bold;">KEY_ENTER</span> - <br>
+<span style="font-weight: bold;">KEY_SHIFT</span> - <br>
+<span style="font-weight: bold;">KEY_CONTROL</span> - <br>
+<span style="font-weight: bold;">KEY_MENU</span> - <br>
+<span style="font-weight: bold;">KEY_PAUSE</span> - <br>
+<span style="font-weight: bold;">KEY_CAPITAL</span> - <br>
+<span style="font-weight: bold;">KEY_KANA</span> - <br>
+<span style="font-weight: bold;">KEY_HANGUEL</span> - <br>
+<span style="font-weight: bold;">KEY_HANGUL</span> - <br>
+<span style="font-weight: bold;">KEY_JUNJA</span> - <br>
+<span style="font-weight: bold;">KEY_FINAL</span> - <br>
+<span style="font-weight: bold;">KEY_HANJA</span> - <br>
+<span style="font-weight: bold;">KEY_KANJI</span> - <br>
+<span style="font-weight: bold;">KEY_ESC</span> - <br>
+<span style="font-weight: bold;">KEY_ESCAPE</span> - <br>
+<span style="font-weight: bold;">KEY_CONVERT</span> - <br>
+<span style="font-weight: bold;">KEY_NONCONVERT</span> - <br>
+<span style="font-weight: bold;">KEY_ACCEPT</span> - <br>
+<span style="font-weight: bold;">KEY_MODECHANGE</span> - <br>
+<span style="font-weight: bold;">KEY_SPACE</span> - <br>
+<span style="font-weight: bold;">KEY_PRIOR</span> - <br>
+<span style="font-weight: bold;">KEY_NEXT</span> - <br>
+<span style="font-weight: bold;">KEY_END</span> - <br>
+<span style="font-weight: bold;">KEY_HOME</span> - <br>
+<span style="font-weight: bold;">KEY_LEFT</span> - <br>
+<span style="font-weight: bold;">KEY_UP</span> - <br>
+<span style="font-weight: bold;">KEY_RIGHT</span> - <br>
+<span style="font-weight: bold;">KEY_DOWN</span> - <br>
+<span style="font-weight: bold;">KEY_SELECT</span> - <br>
+<span style="font-weight: bold;">KEY_PRINT</span> - <br>
+<span style="font-weight: bold;">KEY_EXECUT</span> - <br>
+<span style="font-weight: bold;">KEY_SNAPSHOT</span> - <br>
+<span style="font-weight: bold;">KEY_INSERT</span> - <br>
+<span style="font-weight: bold;">KEY_DELETE</span> - <br>
+<span style="font-weight: bold;">KEY_HELP</span> - <br>
+<span style="font-weight: bold;">KEY_0</span> - <br>
+<span style="font-weight: bold;">KEY_1</span> - <br>
+<span style="font-weight: bold;">KEY_2</span> - <br>
+<span style="font-weight: bold;">KEY_3</span> - <br>
+<span style="font-weight: bold;">KEY_4</span> - <br>
+<span style="font-weight: bold;">KEY_5</span> - <br>
+<span style="font-weight: bold;">KEY_6</span> - <br>
+<span style="font-weight: bold;">KEY_7</span> - <br>
+<span style="font-weight: bold;">KEY_8</span> - <br>
+<span style="font-weight: bold;">KEY_9</span> - <br>
+<span style="font-weight: bold;">KEY_A</span> - <br>
+<span style="font-weight: bold;">KEY_B</span> - <br>
+<span style="font-weight: bold;">KEY_C</span> - <br>
+<span style="font-weight: bold;">KEY_D</span> - <br>
+<span style="font-weight: bold;">KEY_E</span> - <br>
+<span style="font-weight: bold;">KEY_F</span> - <br>
+<span style="font-weight: bold;">KEY_G</span> - <br>
+<span style="font-weight: bold;">KEY_H</span> - <br>
+<span style="font-weight: bold;">KEY_I</span> - <br>
+<span style="font-weight: bold;">KEY_J</span> - <br>
+<span style="font-weight: bold;">KEY_K</span> - <br>
+<span style="font-weight: bold;">KEY_L</span> - <br>
+<span style="font-weight: bold;">KEY_M</span> - <br>
+<span style="font-weight: bold;">KEY_N</span> - <br>
+<span style="font-weight: bold;">KEY_O</span> - <br>
+<span style="font-weight: bold;">KEY_P</span> - <br>
+<span style="font-weight: bold;">KEY_Q</span> - <br>
+<span style="font-weight: bold;">KEY_R</span> - <br>
+<span style="font-weight: bold;">KEY_S</span> - <br>
+<span style="font-weight: bold;">KEY_T</span> - <br>
+<span style="font-weight: bold;">KEY_U</span> - <br>
+<span style="font-weight: bold;">KEY_V</span> - <br>
+<span style="font-weight: bold;">KEY_W</span> - <br>
+<span style="font-weight: bold;">KEY_X</span> - <br>
+<span style="font-weight: bold;">KEY_Y</span> - <br>
+<span style="font-weight: bold;">KEY_Z</span> - <br>
+<span style="font-weight: bold;">KEY_LWIN</span> - <br>
+<span style="font-weight: bold;">KEY_RWIN</span> - <br>
+<span style="font-weight: bold;">KEY_APPS</span> - <br>
+<span style="font-weight: bold;">KEY_SLEEP</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD0</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD1</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD2</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD3</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD4</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD5</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD6</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD7</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD8</span> - <br>
+<span style="font-weight: bold;">KEY_NUMPAD9</span> - <br>
+<span style="font-weight: bold;">KEY_MULTIPLY</span> - <br>
+<span style="font-weight: bold;">KEY_ADD</span> - <br>
+<span style="font-weight: bold;">KEY_SEPARATOR</span> - <br>
+<span style="font-weight: bold;">KEY_SUBTRACT</span> - <br>
+<span style="font-weight: bold;">KEY_DECIMAL</span> - <br>
+<span style="font-weight: bold;">KEY_DIVIDE</span> - <br>
+<span style="font-weight: bold;">KEY_F1</span> - <br>
+<span style="font-weight: bold;">KEY_F2</span> - <br>
+<span style="font-weight: bold;">KEY_F3</span> - <br>
+<span style="font-weight: bold;">KEY_F4</span> - <br>
+<span style="font-weight: bold;">KEY_F5</span> - <br>
+<span style="font-weight: bold;">KEY_F6</span> - <br>
+<span style="font-weight: bold;">KEY_F7</span> - <br>
+<span style="font-weight: bold;">KEY_F8</span> - <br>
+<span style="font-weight: bold;">KEY_F9</span> - <br>
+<span style="font-weight: bold;">KEY_F10</span> - <br>
+<span style="font-weight: bold;">KEY_F11</span> - <br>
+<span style="font-weight: bold;">KEY_F12</span> - <br>
+<span style="font-weight: bold;">KEY_F13</span> - <br>
+<span style="font-weight: bold;">KEY_F14</span> - <br>
+<span style="font-weight: bold;">KEY_F15</span> - <br>
+<span style="font-weight: bold;">KEY_F16</span> - <br>
+<span style="font-weight: bold;">KEY_F17</span> - <br>
+<span style="font-weight: bold;">KEY_F18</span> - <br>
+<span style="font-weight: bold;">KEY_F19</span> - <br>
+<span style="font-weight: bold;">KEY_F20</span> - <br>
+<span style="font-weight: bold;">KEY_F21</span> - <br>
+<span style="font-weight: bold;">KEY_F22</span> - <br>
+<span style="font-weight: bold;">KEY_F23</span> - <br>
+<span style="font-weight: bold;">KEY_F24</span> - <br>
+<span style="font-weight: bold;">KEY_NUMLOCK</span> - <br>
+<span style="font-weight: bold;">KEY_SCROLL</span> - <br>
+<span style="font-weight: bold;">KEY_LSHIFT</span> - <br>
+<span style="font-weight: bold;">KEY_RSHIFT</span> - <br>
+<span style="font-weight: bold;">KEY_LCONTROL</span> - <br>
+<span style="font-weight: bold;">KEY_RCONTROL</span> - <br>
+<span style="font-weight: bold;">KEY_LMENU</span> - <br>
+<span style="font-weight: bold;">KEY_RMENU</span> - <br>
+<span style="font-weight: bold;">KEY_COMMA</span> - <br>
+<span style="font-weight: bold;">KEY_PLUS</span> - <br>
+<span style="font-weight: bold;">KEY_MINUS</span> - <br>
+<span style="font-weight: bold;">KEY_PERIOD</span> - <br>
+<span style="font-weight: bold;">KEY_ATTN</span> - <br>
+<span style="font-weight: bold;">KEY_CRSEL</span> - <br>
+<span style="font-weight: bold;">KEY_EXSEL</span> - <br>
+<span style="font-weight: bold;">KEY_EREOF</span> - <br>
+<span style="font-weight: bold;">KEY_PLAY</span> - <br>
+<span style="font-weight: bold;">KEY_ZOOM</span> - <br>
+<span style="font-weight: bold;">KEY_PA1</span> - <br>
+<span style="font-weight: bold;">KEY_OEM_CLEAR</span> - <br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void MousePosition(int x, int y)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Positions the mouse pointer in the specified x, y device coordinates.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MouseHide(int hide)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>If hide is '1', hides the mouse pointer. If it is '0', shows it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MouseX()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the device x coordinate of the mouse pointer.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MouseY()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the device y coordinate of the mouse pointer.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MouseHit(int button)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified button has been pressed, or '0' otherwise.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">button</span> - The button you want to check. Use MB_LEFT, MB_RIGHT, or MB_MIDDLE.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MouseDown(int button)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified button is pressed, or '0' otherwise.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">button</span> - The button you want to check. Use MB_LEFT, MB_RIGHT, or MB_MIDDLE.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MouseGet()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of the last button pressed.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MouseReleased()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of the last button released.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int KeyHit(int key)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified key has been pressed, or '0' otherwise.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">key</span> - The key you want to check. Each key has an associated constant value, named KEY_NAME. For example, KEY_UP, KEY_RETURN, KEY_ESC, KEY_A, KEY_6 and KEY_SPACE are valid values.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int KeyDown(int key)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns '1' if the specified key is pressed, or '0' otherwise.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">key</span> - The key you want to check. Each key has an associated constant value, named KEY_NAME. For example, KEY_UP, KEY_RETURN, KEY_ESC, KEY_A, KEY_6 and KEY_SPACE are valid values.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int KeyGet()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the last key pressed.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int KeyReleased()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the last key released.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

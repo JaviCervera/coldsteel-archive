@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Shader</span></big><br><br>
+The Professional version of ColdSteel supports hardware shaders, which allows to perform fast realtime pixel and vertex effects on the GPU. Both low-level (written in assembly language) and  high-level (written in HLSL for DirectX or GLSL for OpenGL) shaders are supported.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">PSF_11</span> - <br>
+<span style="font-weight: bold;">PSF_12</span> - <br>
+<span style="font-weight: bold;">PSF_13</span> - <br>
+<span style="font-weight: bold;">PSF_14</span> - <br>
+<span style="font-weight: bold;">PSF_20</span> - <br>
+<span style="font-weight: bold;">PSF_2A</span> - <br>
+<span style="font-weight: bold;">PSF_2B</span> - <br>
+<span style="font-weight: bold;">PSF_30</span> - <br>
+<span style="font-weight: bold;">VSF_11</span> - <br>
+<span style="font-weight: bold;">VSF_20</span> - <br>
+<span style="font-weight: bold;">VSF_2A</span> - <br>
+<span style="font-weight: bold;">VSF_30</span> - <br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int ShaderRegister(string pixel_shader, string pixel_entry, int pixel_format, string vertex_shader, string vertex_entry, int vertex_format, int base_mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new high-level shader.<br>
+<br><big>Returns</big><br>The handle of the registered shader. This handle can then be used as a standard material type.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">pixel_shader</span> - A string containing the source code of the pixel shader.<br>
+<span style="font-weight: bold;">pixel_entry</span> - The name of the entry-point function for the pixel shader, for example "ps_main".<br>
+<span style="font-weight: bold;">pixel_format</span> - The format to which you want to compile the pixel shader. Possible values are: PSF_11, PSF_12, PSF_13, PSF_14, PSF_20, PSF_2A, PSF_2B, PSF_30.<br>
+<span style="font-weight: bold;">vertex_shader</span> - A string containing the source code of the vertex shader.<br>
+<span style="font-weight: bold;">vertex_entry</span> - The name of the entry-point function for the vertex shader, for example "vs_main".<br>
+<span style="font-weight: bold;">vertex_format</span> - The format to which you want to compile the vertex shader. Possible values are: VSF_11, VSF_20, VSF_2A, VSF_30.<br>
+<span style="font-weight: bold;">base_mat</span> - The base material type of this shader.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ShaderRegisterFile(string pixel_file, string pixel_entry, int pixel_format, string vertex_file, string vertex_entry, int vertex_format, int base_mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a new high-level shader from a file.<br>
+<br><big>Returns</big><br>The handle of the registered shader. This handle can then be used as a standard material type.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">pixel_file</span> - The file containing the pixel shader.<br>
+<span style="font-weight: bold;">pixel_entry</span> - The name of the entry-point function for the pixel shader, for example "ps_main".<br>
+<span style="font-weight: bold;">pixel_format</span> - The format to which you want to compile the pixel shader. Possible values are: PSF_11, PSF_12, PSF_13, PSF_14, PSF_20, PSF_2A, PSF_2B, PSF_30.<br>
+<span style="font-weight: bold;">vertex_file</span> - The file containing the vertex shader.<br>
+<span style="font-weight: bold;">vertex_entry</span> - The name of the entry-point function for the vertex shader, for example "vs_main".<br>
+<span style="font-weight: bold;">vertex_format</span> - The format to which you want to compile the vertex shader. Possible values are: VSF_11, VSF_20, VSF_2A, VSF_30.<br>
+<span style="font-weight: bold;">base_mat</span> - The base material type of this shader.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ShaderAsmRegister(string pixel_shader, string vertex_shader, int base_material)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new low-level shader.<br>
+<br><big>Returns</big><br>The handle of the registered shader. This handle can then be used as a standard material type.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">pixel_shader</span> - A string containing the source code of the pixel shader.<br>
+<span style="font-weight: bold;">vertex_shader</span> - A string containing the source code of the vertex shader.<br>
+<span style="font-weight: bold;">base_mat</span> - The base material type of this shader.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ShaderAsmRegisterFile(string pixel_file, string vertex_file, int base_mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a new low-level shader from a file.<br>
+<br><big>Returns</big><br>The handle of the registered shader. This handle can then be used as a standard material type.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">pixel_file</span> - The file containing the pixel shader.<br>
+<span style="font-weight: bold;">vertex_file</span> - The file containing the vertex shader.<br>
+<span style="font-weight: bold;">base_mat</span> - The base material type of this shader.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ShaderPixelConstant(int shader, string name, int start_register, int data, int count)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the value of a pixel constant in the shader. You usually use this to send data to the shader each frame. Some shaders may need, for example, information about the camera position to render properly.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">shader</span> - Handle of the shader.<br>
+<span style="font-weight: bold;">name</span> - Name of the constant you want to set. This is used in hight-level shaders. For low-level shaders, set it to "".<br>
+<span style="font-weight: bold;">start_register</span> - First register that you want to set in the shader. Each register contains 4 floats. This is used in low-level shaders. For high-level shaders, set it to '0'.<br>
+<span style="font-weight: bold;">data</span> - Pointer to the data you want to set. It usually is a vector or a matrix.<br>
+<span style="font-weight: bold;">count</span> - Number of floats you are sending, or in the case of a low-level shader, number of registers you want to fill.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ShaderVertexConstant(int shader, string name, int start_register, int data, int count)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the value of a vertex constant in the shader. You usually use this to send data to the shader each frame. Some shaders may need, for example, information about the camera position to render properly.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">shader</span> - Handle of the shader.<br>
+<span style="font-weight: bold;">name</span> - Name of the constant you want to set. This is used in high-level shaders. For low-level shaders, set it to "".<br>
+<span style="font-weight: bold;">start_register</span> - First register that you want to set in the shader. Each register contains 4 floats. This is used in low-level shaders. For high-level shaders, set it to '0'.<br>
+<span style="font-weight: bold;">data</span> - Pointer to the data you want to set. It usually is a vector or a matrix.<br>
+<span style="font-weight: bold;">count</span> - Number of floats you are sending, or in the case of a low-level shader, number of registers you want to fill.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

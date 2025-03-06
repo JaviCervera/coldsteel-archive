@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Mesh</span></big><br><br>
+A mesh contains information about the shape of a complex object in a 3D scene. A mesh is composed of a list of animations, triangles and vertices.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">CI_NULL</span> - Collision info. Do not generate collision information.<br>
+<span style="font-weight: bold;">CI_BBOX</span> - Collision info. Generate collision info based on the mesh bounding box.<br>
+<span style="font-weight: bold;">CI_TRIANGLES</span> - Collision info. Generate collision info based on the mesh triangles.<br>
+<span style="font-weight: bold;">CI_OCTREE</span> - Collision info. Generate collision info based on the mesh triangles, and sort the information in an octree. This takes more time to generate, but collisions are much faster.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int MeshLoad(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a mesh from disk.<br>
+<br><big>Returns</big><br>A handle to the mesh created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">file</span> - File of the mesh. It must be a mesh in one of the following formats: B3D, MD2, MS3D, X.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MeshTerrainLoad(string heightmap)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads a terrain mesh from a heightmap. A terrain mesh is a standard static mesh generated from a heightmap image instead of a mesh file. The heightmap is a grayscale image which will be used to generate the heights of the mesh.<br>
+<br><big>Returns</big><br>A handle to the mesh created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">heightmap</span> - File of the image containing the heightmap.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MeshFree(int mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a mesh from memory.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">mesh</span> - Handle of the mesh you want to free.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MeshNode(int mesh, int parent, int col_info, int tangent_mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a scene node from a mesh. When you load a mesh from disk, you simple store into memory the information about the shape of the mesh. If you want the mesh to be visible in the scene, you must create a scene node with this function. The advantage of this is that you can load the mesh once, and then create as much scene nodes as you need, and all of them will share the same mesh in memory.<br>
+<br><big>Returns</big><br>A handle to the node created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">mesh</span> - Handle of the mesh you want to instantiate.<br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of the mesh node. When the parent moves or rotates, the node will move and rotate with it to always maintain the same relative position with it. If you don't want the node to have a parent, set this to '0'.<br>
+<span style="font-weight: bold;">col_info</span> - Type of collision info to generate from the mesh. Check the collision info constants for valid values.<br>
+<span style="font-weight: bold;">tangent_mesh</span> - If your scene node will use normal or parallax mapping, the mesh must have tangents on its vertices. Set this to '1' to generate them.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MeshOctreeNode(int mesh, int parent, int col_info, int tangent_mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a scene node from a mesh and optimizes it using a octree. When you load a mesh from disk, you simple store into memory the information about the shape of the mesh. If you want the mesh to be visible in the scene, you must create a scene node with this function. The advantage of this is that you can load the mesh once, and then create as much scene nodes as you need, and all of them will share the same mesh in memory. Optimizing through an octree allows the engine to occlude the parts of the mesh which are not visible at the moment, based on the octree visibility information. This function is better than MeshNode() when you are loading a map, as it is usually really big and you want some type of occlusion to optimize rendering speed.<br>
+<br><big>Returns</big><br>A handle to the node created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">mesh</span> - Handle of the mesh you want to instantiate.<br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of the mesh node. When the parent moves or rotates, the node will move and rotate with it to always maintain the same relative position with it. If you don't want the node to have a parent, set this to '0'.<br>
+<span style="font-weight: bold;">col_info</span> - Type of collision info to generate from the mesh. Check the collision info constants for valid values.<br>
+<span style="font-weight: bold;">tangent_mesh</span> - If your scene node will use normal or parallax mapping, the mesh must have tangents on its vertices. Set this to '1' to generate them.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MeshScale(int mesh, float sx, float sy, float sz)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Scales a mesh.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MeshFlip(int mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Inverts the mesh normals.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MeshUpdateNormals(int mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Recalculates the normals of the mesh.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MeshVerticesColor(int mesh, int color, int change_alpha)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Chanes the color of all the vertices in the mesh at once. If change_alpha is '1', the alpha of the vertices is also changed. If it is '0', the alpha component of the color is ignored.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">mesh</span> - Handle of the mesh you want to free.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MeshPlanarMapping(int mesh, float resolution)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Generates texture mapping values for the mesh.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float MeshWidth(int mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of the specified mesh.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float MeshHeight(int mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of the specified mesh.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float MeshDepth(int mesh)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the depth of the specified mesh.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

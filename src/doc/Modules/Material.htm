@@ -1,0 +1,263 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Material</span></big><br><br>
+Materials define how a scene node will look, defining properties like textures and colors of the node. They can be created from MaterialData structures, which are usually loaded from scripts and then converted to materials to apply them to nodes.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">MF_FULLBRIGHT</span> - Material flag. The scene node will be completely lit.<br>
+<span style="font-weight: bold;">MF_FLATSHADING</span> - Material flag. The scene node won't receive any lights, it will appear in the ambient color.<br>
+<span style="font-weight: bold;">MF_FOG</span> - Material flag. The scene node will be sensible to fog.<br>
+<span style="font-weight: bold;">MF_NOCULL</span> - Material flag. Counter clock-wise triangles won't be occluded.<br>
+<span style="font-weight: bold;">MF_WIREFRAME</span> - Material flag. The scene node will be drawn in wireframe mode.<br>
+<span style="font-weight: bold;">MF_NOZDEPTH</span> - Material flag. Ignores the z-buffer when the scene node is being rendered.<br>
+<span style="font-weight: bold;">MF_NOZWRITE</span> - Material flag. Does not write to the z-buffer when the scene node is being rendered.<br>
+<span style="font-weight: bold;">MF_ANISOTROPIC</span> - Material flag. Enables anisotropic filtering for this material. By default, trilinear filtering is used.<br>
+<span style="font-weight: bold;">MT_MODULATE</span> - Material type. Second texture layer is modulated with the first one.<br>
+<span style="font-weight: bold;">MT_MODULATE2X</span> - Material type. Second texture layer is multiplied by two and modulated with the first one.<br>
+<span style="font-weight: bold;">MT_MODULATE4X</span> - Material type. Second texture layer is multiplied by four and modulated with the first one.<br>
+<span style="font-weight: bold;">MT_DETAIL</span> - Material type. A detail-mapped material. First texture is the diffuse map, second texture is the detail map.<br>
+<span style="font-weight: bold;">MT_ADD</span> - Material type. A single texture transparent material. The blending is done by adding the source color to the dest color.<br>
+<span style="font-weight: bold;">MT_VERTEX_ALPHA</span> - Material type. A single texture transparent material. Transparency is based on the vertex alpha value.<br>
+<span style="font-weight: bold;">MT_ALPHA</span> - Material type. The texture is transparent based on its alpha channel. Only one texture is used.<br>
+<span style="font-weight: bold;">MT_MASKED</span> - Material type. Pixels of the texture with an alpha components greater than 127 are drawn opaque, the others are not drawn.<br>
+<span style="font-weight: bold;">MT_REFLECTION</span> - Material type. A planar-mapped reflective material. First texture layer contains the diffuse texture. Second texture layer contains the reflection map.<br>
+<span style="font-weight: bold;">MT_REFLECTION_ALPHA</span> - Material type. A planar-mapped reflective material, with alpha-blending depending on the vertices alpha values. First texture layer contains the diffuse texture. Second texture layer contains the reflection map.<br>
+<span style="font-weight: bold;">MT_NORMAL</span> - Material type. A normal-mapped material. First texture layer is the diffuse map, second texture layer is the normal map.<br>
+<span style="font-weight: bold;">MT_PARALLAX</span> - Material type. A parallax-mapped material. First texture layer is the diffuse map, second texture layer is the normal map.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int MaterialCreate(string name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new material and returns its handle. You can specify an empty string as name.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialFromData(int data)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new material based on the description of the MaterialData. It returns the handle of the new material. The MaterialData structure remains untouched.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialToData(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new MaterialData structure with the settings of the specified material, and returns its handle. If a MaterialData already exists for the specified material (this is, if a MaterialData with the same name as the material is found), this functions will not create any MaterialData and return '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialFree(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a material from memory.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetType(int mat, int newtype)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the type of the material. It can be one of the material types defined in the constants section.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetFlags(int mat, int flags)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the material flags. It can be one or more of the material flags values combined.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetTexture(int mat, int tex, int layer)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set a texture layer of the material.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">material</span> - Handle of the material.<br>
+<span style="font-weight: bold;">texture</span> - Handle of the texture.<br>
+<span style="font-weight: bold;">layer</span> - Texture layer. It can be '0' or '1'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetAmbient(int mat, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the ambient color for the material.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetDiffuse(int mat, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the diffuse color for the material.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetEmissive(int mat, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the emissive color for the material.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetSpecular(int mat, int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the specular color for the material.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetShininess(int mat, float shininess)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the shininess of the material.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void MaterialSetParam(int mat, float param)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the parameter value of the material. The use of this value depends on the material type. Currently, it is used to define the height of the parallax effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string MaterialGetName(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material name.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetType(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material type.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetFlags(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material flags.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetTexture(int mat, int layer)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material texture for the specified layer.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetAmbient(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material ambient color.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetDiffuse(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material diffuse color.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetEmissive(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material emissive color.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int MaterialGetSpecular(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material specular color.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float MaterialGetShininess(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the material shininess.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float MaterialGetParam(int mat)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the value of the material param. The use of this value depends on the material type. Currently, it is used to define the height of the parallax effect.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Node</span></big><br><br>
+A node is an element of the 3D scene. There are many types of nodes (cameras, meshes, lights, particles...), and apart from their specific functionality, they all share this set of functions.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">NT_EMPTY</span> - Node type. An empty node<br>
+<span style="font-weight: bold;">NT_BILLBOARD</span> - Node type. A billboard node.<br>
+<span style="font-weight: bold;">NT_BODY</span> - Node type. A rigid body node (unused yet).<br>
+<span style="font-weight: bold;">NT_CAMERA</span> - Node type. A camera node.<br>
+<span style="font-weight: bold;">NT_EMITTER</span> - Node type. A particles emitter node.<br>
+<span style="font-weight: bold;">NT_LIGHT</span> - Node type. A light node.<br>
+<span style="font-weight: bold;">NT_MESH</span> - Node type. A mesh node.<br>
+<span style="font-weight: bold;">NT_MESH_OCTREE</span> - Node type. An octree mesh node.<br>
+<span style="font-weight: bold;">NT_TERRAIN</span> - Node type. A terrain node.<br>
+<span style="font-weight: bold;">NT_WATER</span> - Node type. A water node (unused yet).<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int NodeEmpty(int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates an empty scene node. This node does not render anything, but can be translated, rotated, etc, like any other type of node. It's main purpose is to be used as the parent of another node, or to reference a point in the 3D space.<br>
+<br><big>Returns</big><br>The handle of the created node.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of this node. When the parent moves or rotates, the node will move and rotate with it to always maintain the same relative position with it. If you don't want the node to have a parent, set this to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeFree(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Removes a node from the scene, and frees it from memory.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeType(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the type of a node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetName(int node, string name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the name of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string NodeGetName(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the name of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodePosition(int node, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the position of a scene node, relative to its parent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeMove(int node, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Moves a scene node, relative to its current position and orientation, through the 3D space.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeRotate(int node, float pitch, float yaw, float roll)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Rotates a scene node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeTurn(int node, float pitch, float yaw, float roll)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Turns a node, depending on its previous rotation.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeScale(int node, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Scales a node. '1.0' will leave the node on its current size, '2.0' will double it, etc.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeX(int node, int absolute)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the x coordinate of the node, relative to its parent. If absolute is '1', the coordinate is relative to the world instead of the parent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeY(int node, int absolute)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the y coordinate of the node, relative to its parent. If absolute is '1', the coordinate is relative to the world instead of the parent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeZ(int node, int absolute)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the z coordinate of the node, relative to its parent. If absolute is '1', the coordinate is relative to the world instead of the parent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodePitch(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the pitch of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeYaw(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the yaw of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeRoll(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the roll of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeScaleX(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the x scale value of the specified node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeScaleY(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the y scale value of the specified node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeScaleZ(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the z scale value of the specified node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeWidth(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of the specified node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeHeight(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of the specified node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float NodeDepth(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the depth of the specified node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeCastShadow(int node, int cast)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Enables or disables shadow casting for this node. This function requires the stencil buffer enabled in the device.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeHide(int node, int state)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>If you set state to '1', hides the node. If you set it to '0', shows it.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeMaterials(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of materials in the current node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeGetMaterial(int node, int mat_index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns a copy of the specified material in the node. As it is a copy, you can free it whenever you want.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetMaterial(int node, int mat, int mat_index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the specified material in the node. To set all the materials in the node at once, set number as '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void csNodeSetMaterialData(int n, int data, int mat_index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the specified material in the node based on the material definition of a MaterialData structure. To set all the materials in the node at once, set number as '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetMaterialFast(int node, int index, int type, int flags, int tex1, int tex2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>This function allows to set one or all the materials in a node to these values, without having to create a material. It is designed mainly for testing purposes. To set all the materials in a node at once, set 'index' to '0'. Check the material functions to get the valid material type and flags values.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetMaterialFlag(int node, int index, int flag, int state)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>This function enables or disables a flag in one or all the materials in a node, without affecting the rest of the material properties. For example, you can use this to quickly enable fog or fullbrightness in a lightmapped level mesh. To set all the materials in a node at once, set 'index' to '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetPickGroup(int n, int group)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the picking group for this node. This can be any positive value. Nodes which belong to the group '0' cannot be picked.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetProperty(int node, string name, string value)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the name and value of a property in the specified node. A node can have as many properties as you want, and their use is undefined. You can store any data you need inside a property, and read them later.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeProperties(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of properties in a node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeFindProperty(int node, string name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Return the index of the property with the specified name.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string NodePropertyName(int node, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the name of the property at the specified index position.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string NodePropertyValue(int node, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the value of the property at the specified index position.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeRemoveProperty(int node, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Removes the specified property.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetParent(int node, int parent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the parent of the node. Set it to '0' if you don't want the node to have any parent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeGetParent(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the parent of the node, or '0' if it has no parent.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeChildren(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the number of children of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeChild(int node, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the specified node child, in the range 1 ... NodeChildren(node).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeFindChild(int node, string name, int recursive)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Finds a child with the specified name. If recursive is '1', it will recursively search on child nodes also.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSpeed(int node, float fps)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the frames per second at which the node's animation will be played.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeLoop(int node, int loop)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set loop to '1' if you want the animation to be looped, '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeSetFrame(int node, int start, int finish)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the start and finish frames of the animation to be played. If finish is '0', the function is used to set the current animation frame.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int NodeGetFrame(int node)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the current animation frame of the node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeAttachToBone(int n, int n2, string bonename)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Attaches n to the to bone in n2 with the specified name. n2 will become the parent of n1.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void NodeLookAt(int node, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Rotates node so it will look at the position specified by x, y, z.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

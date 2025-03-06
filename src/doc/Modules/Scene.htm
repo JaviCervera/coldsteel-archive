@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Scene</span></big><br><br>
+The scene represent the 3D space in which all your three-dimensional graphics are drawn.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">TS_VIEW</span> - Scene matrix. Represents the current view matrix.<br>
+<span style="font-weight: bold;">TS_WORLD</span> - Scene matrix. Represents the current world matrix.<br>
+<span style="font-weight: bold;">TS_PROJECTION</span> - Scene matrix. Represents the current projection matrix.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void SceneBegin()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Prepares the scene for drawing. All the drawing operations (both 2D and 3D) must happen between SceneBegin() and SceneEnd().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneEnd()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Finishes rendering a scene, and draws the results on screen.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneRender(int camera)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Renders the contents of the scene. This draws all the scene nodes created.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">camera</span> - Sets the camera through which the scene will be seen. A camera is created with the function CameraNode().<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneAmbient(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the ambient color of the scene. This color defines how lit will appear all the geometry which is not affected by any lights.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneShadow(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the color of the shadows.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneFog(int color, float near, float far)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the color and the distance parameters of the fog. Have in mind that the scene nodes sensibility to fog is set through their MF_FOG material flag.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">color</span> - Color of the fog.<br>
+<span style="font-weight: bold;">near</span> - Distance at which fog starts.<br>
+<span style="font-weight: bold;">far</span> - Distance at which fog becomes completely opaque.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneSkybox(int top, int bottom, int left, int right, int front, int back)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the skybox for the scene. The six parameters are the six textures which form the skybox. If you want to clear the current skybox, simply call this function passing '0' as the first parameter.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneSkydome(int tex, float hres, float yres, float tex_percent, float sphere_percent)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the skydome for the scene.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">tex</span> - Texture to use in the skydome.<br>
+<span style="font-weight: bold;">hres</span> - Number of vertices of a horizontal layer of the skydome.<br>
+<span style="font-weight: bold;">vres</span> - Number of vertices of a vertical layer of the skydome.<br>
+<span style="font-weight: bold;">tex_percent</span> - How much of the height of the texture is used. Should be between '0' and '1'.<br>
+<span style="font-weight: bold;">sphere_percent</span> - How much of the sphere is drawn. Value should be between '0' and '2', where '1' is an exact half-sphere and '2' is a full sphere.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SceneTransformation(int state, int matrix)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Fills a matrix with the projection data of the specified transformation state. It can be TS_VIEW, TS_WORLD, or TS_PROJECTION.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

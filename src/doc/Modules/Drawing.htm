@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Drawing</span></big><br><br>
+These functions are used to draw 2D stuff to the display.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int GetColor(int red, int green, int blue, int alpha)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Generates a color value from a set of red, green, blue, alpha components. Each component ranges from 0 to 255.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GetRed(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the red component of the specified color, in the range 0 - 255.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GetGreen(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the green component of the specified color, in the range 0 - 255.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GetBlue(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the blue component of the specified color, in the range 0 - 255.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int GetAlpha(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the alpha component of the specified color, in the range 0 - 255.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void SetColor(int color)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the color in which all 2D operations will be drawn.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void Viewport(int x, int y, int w, int h)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Defines a rectangular region of the screen to which all the 2D operations will be limited.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DrawLine(int x, int y, int x1, int y1)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Draws a line using the specified screen coordinates.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DrawRect(int x, int y, int w, int h)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Draws a rectangle in the specified area of the screen.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DrawTexture(int tex, int x, int y)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Draws a texture to the specified screen coordinates.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void DrawText(int font, string text, int x, int y)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Draws a text in the screen.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">font</span> - Handle to the font you want to use to draw the text, or '0' to use the default font.<br>
+<span style="font-weight: bold;">text</span> - A string containing the text you want to draw.<br>
+<span style="font-weight: bold;">x, y</span> - Screen coordinates to which the text will be drawn.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextWidth(int font, string text)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of the text using the specified font.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int TextHeight(int font, string text)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of the text using the specified font.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

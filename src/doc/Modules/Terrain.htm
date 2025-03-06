@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Terrain</span></big><br><br>
+Apart from the static mesh terrains you can create, ColdSteel Pro also supports dynamic terrain rendering, which uses the Level-Of-Detail system to increase or decrease the quality of each part of the terrain, based on its distance to the camera.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int TerrainNode(string heightmap, int parent, float width, float height, float depth, int col_info)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new terrain node based on a greyscale heightmap image.<br>
+<br><big>Returns</big><br>The handle of the created terrain.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">heightmap</span> - Image file containing a grayscale imaghe which will be used to generate the terrain heights.<br>
+<span style="font-weight: bold;">parent</span> - Handle of another scene node, which will be the parent of this terrain. When the parent moves or rotates, the terrain will move and rotate with it to always maintain the same relative position with it. If you don't want the terrain to have a parent, set this to '0'.<br>
+<span style="font-weight: bold;">width, height, depth</span> - Size of the terrain.<br>
+<span style="font-weight: bold;">col_info</span> - Set to '1' to generate collision info, or '0' otherwise.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void TerrainScaleTexture(int terrain, float scale1, float scale2)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Scales the texture coordinates of the terrain, so the texture can appear tiled when mapped onto it.<br>
+<br><big>Parameters</big><br>
+<span style="font-weight: bold;">terrain</span> - Handle of the terrain you want to modify.<br>
+<span style="font-weight: bold;">scale1</span> - Scale value for the first texture layer. To leave the texture coordinates untouched, set it to '1.0'.<br>
+<span style="font-weight: bold;">scale2</span> - Scale value for the second texture layer. To use the same coordinate as in the first layer, set it to '0.0'. If you are using a detail map on the terrain, you'll want to give a high value to this paramameter, so the detail texture will appear tiled all over the terrain surface.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

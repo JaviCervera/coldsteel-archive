@@ -1,0 +1,31 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dllRelease", "dllRelease.vcproj", "{486B6423-1574-4C16-97E7-631B0C8F0E79}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exeRelease", "exeRelease.vcproj", "{31842709-8307-4F1D-A418-8FDA414CB678}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dllDemo", "dllDemo.vcproj", "{55870C0F-4908-4511-9526-6652A92BF84D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "exeScriptRelease", "exeScriptRelease.vcproj", "{49595C87-F792-4CB6-82ED-E47E2FF7718F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{486B6423-1574-4C16-97E7-631B0C8F0E79}.Debug|Win32.ActiveCfg = Debug|Win32
+		{486B6423-1574-4C16-97E7-631B0C8F0E79}.Debug|Win32.Build.0 = Debug|Win32
+		{486B6423-1574-4C16-97E7-631B0C8F0E79}.Release|Win32.ActiveCfg = Release|Win32
+		{486B6423-1574-4C16-97E7-631B0C8F0E79}.Release|Win32.Build.0 = Release|Win32
+		{31842709-8307-4F1D-A418-8FDA414CB678}.Debug|Win32.ActiveCfg = Debug|Win32
+		{31842709-8307-4F1D-A418-8FDA414CB678}.Release|Win32.ActiveCfg = Release|Win32
+		{55870C0F-4908-4511-9526-6652A92BF84D}.Debug|Win32.ActiveCfg = Debug|Win32
+		{55870C0F-4908-4511-9526-6652A92BF84D}.Release|Win32.ActiveCfg = Release|Win32
+		{49595C87-F792-4CB6-82ED-E47E2FF7718F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{49595C87-F792-4CB6-82ED-E47E2FF7718F}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

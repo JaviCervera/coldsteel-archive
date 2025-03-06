@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Event</span></big><br><br>
+ColdSteel uses an event system to control game flow.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">EV_INIT</span> - This event is sent when the engine initialises.<br>
+<span style="font-weight: bold;">EV_FINISH</span> - You must send this event when you want to exit the game.<br>
+<span style="font-weight: bold;">EV_FRAME</span> - This event is sent in the Professional version everytime you need to update game logic and redraw the scene. On the SDK, just do this after the other events have been processed.<br>
+<span style="font-weight: bold;">EV_DISPLAY_OPEN</span> - Sent when you open the display. You must recreate all the elements that are destroyed between display changes: textures, nodes...<br>
+<span style="font-weight: bold;">EV_KEY_HIT</span> - Sent when a key has been hit.<br>
+<span style="font-weight: bold;">EV_KEY_RELEASE</span> - Sent when a key has been released.<br>
+<span style="font-weight: bold;">EV_MOUSE_MOVE</span> - Sent when the mouse moves.<br>
+<span style="font-weight: bold;">EV_MOUSE_HIT</span> - Sent when a mouse button has been hit.<br>
+<span style="font-weight: bold;">EV_MOUSE_RELEASE</span> - Sent when a mouse button has been released.<br>
+<span style="font-weight: bold;">EV_GADGET_ACTION</span> - Sent when a gadget action has occured.<br>
+<span style="font-weight: bold;">EV_GADGET_ENTER</span> - Sent when the mouse has entered inside a gadget boundaries.<br>
+<span style="font-weight: bold;">EV_GADGET_EXIT</span> - Sent when the mouse exists the gadget boundaries.<br>
+<span style="font-weight: bold;">EV_GADGET_LOSTFOCUS</span> - Sent when a gadget loses mouse focus.<br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int EventGet()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the next event to process, without removing it from the queue.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int EventPoll()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Get the next event to process, and removes it form the queue.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void EventPost(int id, int from, int to, float a, float b, float c, string str)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sends an event.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int EventId()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the id of the event you are currently processing.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int EventFrom()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the source object of the event. For example, if you want to send an event from one node to another, you can set the 'from' and 'to' values of the event.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int EventTo()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the destination object of the event. For example, if you want to send an event from one node to another, you can set the 'from' and 'to' values of the event.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float EventA()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the first data object of the event. The meaning of this value depends on the event.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float EventB()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the second data object of the event. The meaning of this value depends on the event.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float EventC()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the third data object of the event. The meaning of this value depends on the event.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string EventData()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns a string with another data you may need in the event.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

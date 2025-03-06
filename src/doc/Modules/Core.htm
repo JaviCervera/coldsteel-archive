@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Core</span></big><br><br>
+ColdSteel SDK contains some functions to initialize and deinitialize the engine properly. Before calling any other function in the engine, you must call LibInit(). For a clean shutdown, call LibFinish() before exiting.<br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">void CoreInit()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Initialises the engine. You must call this function at the begining of your program, before calling any other ColdSteel functions.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void CoreFinish()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Cleanly shuts down the engine, releasing all the memory allocated by it. After calling this, you can exit your program safely.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void CoreMessage(string msg, int error)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Shows as popup message. The 'error' parameter tells if the message should contain an error icon.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int CoreTimer()</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the amount of milliseconds elapsed since the system started.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>

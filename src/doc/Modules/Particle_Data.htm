@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+   <meta content="text/html; charset=ISO-8859-1" http-equiv="content-type">
+   <title>::: ColdSteel Engine :::</title>
+</head>
+
+<body style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);" alink="#666666" link="#666666" vlink="#666666">
+<span style="font-family: Georgia;">
+<big><span style="font-weight: bold;">Particle Data</span></big><br><br>
+These functions configure the settings of a set of particles. You can emit these particles using emitter nodes. A particle system is composed by three elements: particle data, which configure the settings of the particles to be emitted, particle emitters, which are used to locate the particles in the 3d space, and particle affectors, which configure the behaviour of the particles emitted.<br><br>
+<big><span style="font-weight: bold;">Constants</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">PT_POINT</span> - <br>
+<span style="font-weight: bold;">PT_BOX</span> - <br>
+</td>
+</tr>
+</tbody>
+</table><br><br>
+<big><span style="font-weight: bold;">Functions</span></big><br><br>
+<table style="width: 100%; text-align: left; margin-left: 0px; margin-right: 0px;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(141, 182, 205);">
+<span style="font-weight: bold;">int ParticleDataCreate(string name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Creates a new particle data object and returns its handle.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataLoad(string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Loads particle data from the specified file. Particle data can be exported to a XML file, and you can create a new particle data object from this file using this function. The particle data object created will be returned.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSave(int part_data, string file)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Saves the particle_data settings to the specified XML file. The file extension for particles must be .par, in order for the engine editors to load particles property.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataFree(int part_data)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Frees a particle data object from memory.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataFind(string name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the particle_data with the specified name, if it exists. If it is not found, the funcion returns '0'.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetMaterial(int part_data, string mat_name)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Sets the material name for this particle_data. When an emitter node is created from this data, id a material matching the specified name is found, it will be applied automatically to the particles.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetType(int part_data, int type)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the type of the particle data. Possible values are PT_POINT and PT_BOX.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetBox(int part_data, float width, float height, float depth)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the box size of the particles (only used when it is a box particle data).<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetDirection(int part_data, float x, float y, float z)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the direction of the particles.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetRate(int part_data, int min, int max)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the range of minimum and maximum particles per second that may be emitted.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetColor(int part_data, int min, int max)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the range of minimum and maximum colors that the particles will have when emitted. This color can be changed during particles lifetime by adding a fade out affector to the emitter node.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetLifeTime(int part_data, int min, int max)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the range of minimum and maximum milliseconds that a particle may last.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetMaxAngle(int part_data, int angle)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the maximum angle at which a particle can be emitted.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataSetSize(int part_data, float width, float height)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Set the size of the particles emitted.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataAddFadeOutAffector(int part_data, int color, int time)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds an affector to the particle data. Affectors modify the behaviour of the particles emitted in realtime. Although the usual way to add affectors is to add on an emitter basis, you can add an affector to the particle data, so the affector will be added to each emitter created using this data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">void ParticleDataAddGravityAffector(int part_data, float grav_x, float grav_y, float grav_z, int time)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Adds an affector to the particle data. Affectors modify the behaviour of the particles emitted in realtime. Although the usual way to add affectors is to add on an emitter basis, you can add an affector to the particle data, so the affector will be added to each emitter created using this data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string ParticleDataGetName(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the name of the particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">string ParticleDataGetMaterial(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the name of the material of the particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetType(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the type of the particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetBoxWidth(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of the emitting box of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetBoxHeight(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of the emitting box of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetBoxDepth(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the depth of the emitting box of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetDirectionX(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the X direction of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetDirectionY(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Y direction of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetDirectionZ(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Z direction of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMinRate(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the min emitting rate of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMaxRate(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the max emitting rate of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMinColor(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the min color of the particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMaxColor(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the max color of the particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMinLifeTime(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the min lifetime of the particle data, in milliseconds.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMaxLifeTime(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the max lifetime of this particle data, in milliseconds.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetMaxAngle(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the max angle of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetWidth(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the width of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetHeight(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the height of this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataAffectors(int part)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the total number of affectors associated to this particle data.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetAffectorType(int part, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the type of the specified affector. It can be '0' for a fade-out affector, or '1' for a gravity affector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetAffectorColor(int part, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the color of the specified affector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">int ParticleDataGetAffectorTime(int part, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the time taken to produce the specified affector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetAffectorGravityX(int part, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the X gravity of the specified affector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetAffectorGravityY(int part, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Y gravity of the specified affector.<br>
+</td>
+</tr>
+</tbody>
+</table><br><span style="font-weight: bold;">float ParticleDataGetAffectorGravityZ(int part, int index)</span><br>
+<table style="text-align: left; width: 100%;" border="0" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td style="background-color: rgb(155, 200, 225);">
+<big>Description</big><br>Returns the Z gravity of the specified affector.<br>
+</td>
+</tr>
+</tbody>
+</table><br></td>
+</tr>
+</tbody>
+</table>
+</span>
+</body>
+</html>
